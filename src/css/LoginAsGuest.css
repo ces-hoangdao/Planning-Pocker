@@ -1,0 +1,106 @@
+.login-as-guest {
+    width: 60rem;
+    margin: 20rem auto;
+    text-align: center;
+    padding: 2rem;
+}
+
+.login-as-guest h3 {
+    color: #1a2935;
+    font-size: 2rem;
+}
+
+.form-login-as-guest {
+    margin-top: 5rem;
+}
+
+.input-guest-name {
+    display: inline-block;
+    width: 100%;
+    height: 4rem;
+    padding: 0px 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    color: #1a2935;
+    font-size: 1.4rem;
+}
+
+.input-guest-name:focus {
+    outline: none;
+    border: 2px solid rgba(57, 146, 255, 0.75);
+}
+
+.spectator-mode {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.input-spectator-mode {
+    display: none;
+}
+
+.input-spectator-mode:checked+.label-spectator-mode {
+    background-color: #3993ff;
+}
+
+.input-spectator-mode:checked+.label-spectator-mode .spin-spectator-mode {
+    transform: translateX(1.3rem);
+}
+
+.label-spectator-mode {
+    display: inline-block;
+    width: 3.5rem;
+    height: 2rem;
+    padding: 0.25rem 0.3rem;
+    background-color: #ccc;
+    border-radius: 3rem;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.spin-spectator-mode {
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: white;
+    border-radius: 1.6rem;
+    transition: 0.2s linear;
+}
+
+.label-join-as-spectator {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    font-size: 1.6rem;
+}
+
+.btn-continue {
+    width: 100%;
+    height: 4rem;
+    background-color: #3993ff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border: 0px;
+    margin-top: 1.5rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+}
+
+.bottom-option {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #3993ff;
+    margin-top: 1.5rem;
+}
+
+.option-login, .option-signup {
+    cursor: pointer;
+}
