@@ -9,11 +9,13 @@ body {
 .home_title_container {
     justify-content: center;
     display: flex;
-    padding-top: 2rem;
+    padding-top: 3rem;
+    height: 10rem;
 }
 
 .home_title {
-    font-size: 2.5rem;
+    font-size: 3.8rem;
+
 }
 
 .home_subtitle_container {
@@ -22,8 +24,9 @@ body {
 }
 
 .home_subtitle {
-    font-weight: 200;
-    font-size: large;
+    font-weight: 100;
+    font-size: 1.8rem;
+    
 }
 
 .nav {
@@ -32,7 +35,7 @@ body {
     align-items: center;
     background-color: white;
     color: #3993ff;
-    padding: 1rem;
+    padding: 2rem;
     height: fit-content;
 }
 
@@ -43,17 +46,16 @@ body {
 }
 
 .logo {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 .site-title {
     font-size: 2.3rem;
     color: #3993ff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
     text-decoration: none;
-    margin-left: 0.5rem;
+    margin-left: 1.25rem;
 }
 
 .btn_container {
@@ -99,7 +101,7 @@ body {
     color: #3993ff;
     display: inline-block;
     align-items: center;
-    font-size: large;
+    font-size: 2rem;
     font-weight: 600;
 }
 
@@ -108,7 +110,7 @@ body {
     color: #3993ff;
     display: inline-block;
     align-items: center;
-    font-size: large;
+    font-size: 2rem;
     font-weight: 600;
 }
 
@@ -122,10 +124,10 @@ body {
     font-weight: 600;
     text-decoration: none;
     list-style: none;
-    height: 2.3rem;
+    height: 3.2rem;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
     cursor: pointer;
     transition: all 0.25s linear;
 }
@@ -141,7 +143,7 @@ body {
     color: white;
     display: inline-block;
     align-items: center;
-    font-size: large;
+    font-size: 1.7rem;
     font-weight: 600;
 }
 
@@ -165,4 +167,68 @@ body {
 .google_icon_container {
     margin-left: 0.5rem;
     margin-top: 0.25rem;
+}
+
+.home_steps_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8rem;
+    padding-left: 38rem;
+    padding-right: 38rem;
+}
+
+.home_steps_title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8rem;
+    padding-left: 30rem;
+    padding-right: 30rem;
+    font-size: 1.4rem;
+}
+
+.step1_title_container{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+.step2_title_container{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+.step3_title_container{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+.home_steps_subtitle_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30rem;
+    padding-right: 30rem;
+    font-size: 1.6rem;
+}
+.step1_subtitle_content{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+.step2_subtitle_content{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+.step3_subtitle_content{
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
 }
