@@ -1,17 +1,18 @@
 import React from "react";
-import "../css/Home.css";
+import { Link } from 'react-router-dom'
 import logo from "../assets/logo.png";
 import Popup from "reactjs-popup";
 import Login from "../form/LoginForm";
 import step1 from "../assets/step1.svg";
 import step2 from "../assets/step2.svg";
 import step3 from "../assets/step3.svg";
+import "../css/Home.css";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="body">
       <nav className="nav">
-        <div to="/home" className="title_container">
+        <div to="/" className="title_container">
           <img src={logo} alt="logo" className="logo" />
           <div className="site-title">Planning Poker</div>
         </div>
@@ -32,16 +33,16 @@ export default function Home() {
           </div>
           <div className="signup_btn_container">
             <button className="signup_btn">
-              <div to="/guest" className="signup_btn_content">
+              <div className="signup_btn_content">
                 Sign up
               </div>
             </button>
           </div>
           <div className="guest_btn_container">
             <button className="guest_btn">
-              <div to="/guest" className="guest_btn_content">
+              <Link to='login-as-guest' className="guest_btn_content">
                 Guest?
-              </div>
+              </Link>
             </button>
           </div>
         </div>
@@ -91,3 +92,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;
