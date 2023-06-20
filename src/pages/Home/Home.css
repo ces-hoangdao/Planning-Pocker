@@ -1,0 +1,231 @@
+:root {
+    --primary-color: #3993ff;
+    --secondary-color: #74b3ff;
+}
+
+.main_container {
+    height: 68rem;
+}
+
+.home_title_container {
+    justify-content: center;
+    display: flex;
+    padding-top: 3rem;
+    height: 10rem;
+}
+
+.home_title {
+    font-size: 3.8rem;
+}
+
+.home_subtitle_container {
+    justify-content: center;
+    display: flex;
+}
+
+.home_subtitle {
+    font-weight: 100;
+    font-size: 1.8rem;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 2rem;
+    height: fit-content;
+}
+
+.title_container {
+    text-decoration: none;
+    display: flex;
+    margin-left: 1rem;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.site-title {
+    font-size: 2.3rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 1.25rem;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin-left: 1.5rem;
+}
+
+.login_btn {
+    background-color: white;
+    border: 0.05rem solid transparent;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.signup_btn {
+    background-color: white;
+    border: 0.05rem solid transparent;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login_btn_content {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: inline-block;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.signup_btn_content {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: inline-block;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.guest_btn {
+    background-color: var(--primary-color);
+    border: 0.1rem solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    list-style: none;
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    font-weight: 600;
+}
+
+.guest_btn_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.guest_btn_content {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.login_btn_container :hover {
+    color: var(--secondary-color);
+}
+
+.guest_btn_container :hover {
+    background-color: var(--secondary-color);
+}
+
+.signup_btn_container :hover {
+    color: var(--secondary-color);
+}
+
+.google_icon {
+    height: 1.3rem;
+}
+
+.google_icon_container {
+    margin: 0.25rem 0 0 0.5rem;
+}
+
+.home_steps_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8rem 38rem;
+}
+
+.home_steps_title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8rem;
+    padding: 0 30rem;
+    font-size: 1.4rem;
+}
+
+.step_title_container {
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+
+.home_steps_subtitle_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30rem;
+    font-size: 1.6rem;
+}
+
+.step_subtitle_content {
+    display: flex;
+    justify-content: center;
+    width: 35rem;
+    text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 999;
+}
+
+.popup-open {
+    filter: blur(0.8px);
+    pointer-events: none;
+}
+
+.overlay.active {
+    opacity: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 2rem;
+    height: 8.9rem;
+}
