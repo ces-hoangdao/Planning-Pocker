@@ -1,0 +1,87 @@
+.home {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.home_title_container {
+    height: 10rem;
+}
+
+.home_title {
+    font-size: 3.8rem;
+    font-weight: var(--font-weight-large);
+}
+
+.home_subtitle {
+    font-size: var(--font-size-medium);
+}
+
+.nav.home-navbar {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 2rem;
+    height: 10rem;
+}
+
+.title_container {
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.site-title {
+    font-size: 2.3rem;
+    color: var(--primary-color);
+    font-weight: var(--font-weight-large);
+    text-decoration: none;
+    margin-left: 1.25rem;
+}
+
+.btn_container {
+    width: 30rem;
+    margin-left: 1.5rem;
+}
+
+.btn.btn-primary.btn-login-as-guest {
+    background-color: var(--primary-color);
+    color: white;
+    border: 0;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-small);
+}
+
+.btn.btn-primary.btn-login-as-guest:hover {
+    background-color: var(--secondary-color);
+}
+
+.container.home-main-container {
+    width: 100%;
+    height: 65rem;
+}
+
+.container.home-steps-container {
+    width: 100%;
+}
+
+.step-container {
+    width: 40rem;
+    height: 40rem;
+}
+
+.container .step-title-container {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-medium);
+}
+
+.container .step-subtitle-container {
+    font-size: var(--font-size-medium);
+}
+
+.step-image-container {
+    height: 20rem;
+}
