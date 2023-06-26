@@ -1,7 +1,6 @@
 const ROUTES = {
-    HOME_PATH: '/',
-    GUEST_PATH: 'guest'
-};  
+  HOME_PATH: "/",
+  GUEST_PATH: "guest",
+}
 
-export default ROUTES;
-
+export default ROUTES
