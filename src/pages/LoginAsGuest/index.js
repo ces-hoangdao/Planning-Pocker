@@ -9,8 +9,8 @@ function LoginAsGuest() {
     setShowError(guestName.trim() === "")
   }
 
-  const handleInputChange = (e) => {
-    setGuestName(e.target.value)
+  const handleInputChange = (event) => {
+    setGuestName(event.target.value)
     setShowError(false)
   }
 

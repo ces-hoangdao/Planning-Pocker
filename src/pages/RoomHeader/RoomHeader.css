@@ -1,0 +1,86 @@
+.room {
+    background-color: #f9f9f9;
+}
+
+.room__container {
+    position: relative;
+    height: 100vh;
+    padding: 0 2rem;
+}
+
+.room__header {
+    padding-top: 1.3rem;
+}
+
+.site-logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.dropdown.dropdown-container {
+    display: inline-block;
+    margin-left: 0.8rem;
+}
+
+.dropdown.dropdown-container:hover {
+    background-color: #f2f2f2;
+    border-radius: 0.8rem;
+}
+
+.btn.btn-primary.btn-dropdown {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.btn.btn-primary.btn-dropdown:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--text-color);
+}
+
+.btn.btn-primary.btn-dropdown i {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
+}
+
+.dropdown-item.item {
+    background-color: transparent;
+    font-size: 1.3rem;
+}
+
+.dropdown-item i {
+    color: #a0a0a0;
+    margin-right: 0.9rem;
+}
+
+.dropdown-menu.show {
+    --bs-dropdown-link-active-color: var(--text-color);
+    --bs-dropdown-link-active-bg: #f2f2f2;
+    box-shadow: 1px 2px 6px 0px rgba(200, 200, 200, 0.576);
+}
+
+.right-side-header {
+    width: 30rem;
+}
+
+.btn.btn-primary.btn-dropdown.btn-user-dropdown {
+    font-size: 1.4rem;
+}
+
+.btn.btn-outline-primary.option-button {
+    background-color: #fff;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+    border-radius: 0.6rem;
+}
+
+.btn.btn-outline-primary.option-button:hover {
+    background-color: #ebf4ff;
+}
+
