@@ -1,10 +1,17 @@
 import instance from "../apiConfig"
 
-const guestLogin = async (username) => {
+export const guestLogin = async (username) => {
   const res = await instance.post("/auth/guest/login", {
     username,
   })
   return res.data
 }
 
-export default guestLogin
+export const signUp = async (username, email, password) => {
+  const res = await instance.post("/auth/signup", {
+    username,
+    email,
+    password,
+  })
+  return res.data
+}
