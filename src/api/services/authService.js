@@ -14,3 +14,10 @@ export const signUp = async (username, email, password) => {
     password,
   })
 }
+
+export const login = async (email, password) => {
+  await instance.post("/auth/email/login", {
+    email,
+    password,
+  })
+}

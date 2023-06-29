@@ -1,11 +1,11 @@
-.btn-signup {
+.btn-login {
     color: var(--primary-color);
     border: none;
     font-size: var(--font-size-large);
     font-weight: var(--font-weight-medium);
 }
 
-.btn-signup:hover {
+.btn-login:hover {
     color: var(--secondary-color);
     border: none;
     font-weight: var(--font-weight-large);
@@ -36,7 +36,7 @@
     font-size: var(--font-size-medium);
 }
 
-.form-control.input-signup{
+.form-control.input-login{
     font-size: var(--font-size-medium);
 
 }
@@ -55,19 +55,25 @@
     border: 0;
 }
 
-.alert-success{
-    font-size: var(--font-size-medium);
+.google-icon {
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-right: 1rem;
 }
 
-.alert-danger{
-    font-size: var(--font-size-medium);
-}
-
-.btn-alert-close {
-    background-color: white;
-    border: 1px solid white;
-    font-size: var(--font-size-medium);
+.btn-google {
+    width: 100%;
+    height: 4.5rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--primary-color);
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-medium);
     color: var(--primary-color);
+    background-color: white;
+}
+
+.btn-google:hover {
+    background-color: #ebf4ff;
 }
 
 .Toastify__toast--success .Toastify__toast-body{

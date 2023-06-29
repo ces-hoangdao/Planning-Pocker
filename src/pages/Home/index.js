@@ -5,7 +5,7 @@ import ROUTES from "../../constants/routes"
 import logo from "../../assets/logo.png"
 import steps from "../../constants/homeSteps"
 import "./Home.css"
-import SignUp from "../SignUp"
+import Login from "../Login"
 
 function Home() {
   return (
@@ -16,7 +16,7 @@ function Home() {
           <div className="site-title">Planning Poker</div>
         </div>
         <div className="btn_container d-flex justify-content-evenly align-items-center">
-          <SignUp />
+          <Login />
           <Link to={ROUTES.GUEST_PATH}>
             <Button color="primary" size="lg" className="btn-login-as-guest">
               Guest?
