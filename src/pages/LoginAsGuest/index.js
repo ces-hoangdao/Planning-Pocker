@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import guestLogin from "../../api/services/authService"
+import { guestLogin } from "../../api/services/authService"
 import "./LoginAsGuest.css"
 
 function LoginAsGuest() {
