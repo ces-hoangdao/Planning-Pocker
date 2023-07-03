@@ -1,7 +1,9 @@
 export const ROUTES = {
   HOME_PATH: "/",
-  NEW_GAME_PATH: "new-game",
-  ROOM_PATH: "room/:roomId",
+  GUEST_PATH: "guest",
+  NEW_GAME_PATH: "/new-game",
+  ROOM_PATH: "room/:id",
+  GOOGLE_USER_PATH: "/user/:id",
 }
 
 export const API_ROUTES = {

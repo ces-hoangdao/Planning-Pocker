@@ -13,6 +13,7 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./SignUp.css"
 import validateEmail from "../../utils/ValidateUtils"
+import PASS_LIMIT from "../../constants/authConst"
 import { signUp } from "../../api/services/authService"
 
 function SignUp() {
@@ -33,14 +34,12 @@ function SignUp() {
   const [signupmodal, setSignUpModal] = useState(false)
   const toggle = () => setSignUpModal(!signupmodal)
 
-  const passLimit = 8
-
   const errorMessages = {
     userNameError:
       userSignUpData.userName.length === 0 ? "Username is required" : "",
     emailError: !validateEmail(userSignUpData.email) ? "Email is required" : "",
     passwordError:
-      userSignUpData.password.length < passLimit
+      userSignUpData.password.length < PASS_LIMIT
         ? "Password must be at least 8 characters"
         : "",
     confirmPasswordError:
@@ -93,7 +92,7 @@ function SignUp() {
     if (
       userSignUpData.userName &&
       validateEmail(userSignUpData.email) &&
-      userSignUpData.password.length >= passLimit &&
+      userSignUpData.password.length >= PASS_LIMIT &&
       userSignUpData.confirmPassword === userSignUpData.password
     ) {
       handleSignUp()
@@ -130,8 +129,7 @@ function SignUp() {
             </FormGroup>
             {errors.userNameError && (
               <div className="error-message">
-                {" "}
-                <i className="fa fa-warning" /> {errors.userNameError}{" "}
+                <i className="fa fa-warning" /> {errors.userNameError}
               </div>
             )}
             <FormGroup>
@@ -149,8 +147,7 @@ function SignUp() {
             </FormGroup>
             {errors.emailError && (
               <div className="error-message">
-                {" "}
-                <i className="fa fa-warning" /> {errors.emailError}{" "}
+                <i className="fa fa-warning" /> {errors.emailError}
               </div>
             )}
             <FormGroup>
@@ -168,8 +165,7 @@ function SignUp() {
             </FormGroup>
             {errors.passwordError && (
               <div className="error-message">
-                {" "}
-                <i className="fa fa-warning" /> {errors.passwordError}{" "}
+                <i className="fa fa-warning" /> {errors.passwordError}
               </div>
             )}
             <FormGroup>
@@ -187,8 +183,7 @@ function SignUp() {
             </FormGroup>
             {errors.confirmPasswordError && (
               <div className="error-message">
-                {" "}
-                <i className="fa fa-warning" /> {errors.confirmPasswordError}{" "}
+                <i className="fa fa-warning" /> {errors.confirmPasswordError}
               </div>
             )}
           </Form>

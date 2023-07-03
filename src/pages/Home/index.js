@@ -5,6 +5,7 @@ import SignUp from "../SignUp"
 import logo from "../../assets/logo.png"
 import steps from "../../constants/homeSteps"
 import "./Home.css"
+import Login from "../Login"
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
           <div className="site-title">Planning Poker</div>
         </div>
         <div className="btn_container d-flex justify-content-evenly align-items-center">
+          <Login />
           <SignUp />
           <LoginAsGuest />
         </div>
