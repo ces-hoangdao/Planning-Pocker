@@ -1,10 +1,14 @@
 import instance from "../apiConfig"
+import { API_ROUTES } from "../../constants/routes"
 
-const createRoom = async (roomName) => {
-  const res = await instance.post("/room", {
+export const createRoom = async (roomName) => {
+  const res = await instance.post(`${API_ROUTES.ROOM_PATH}`, {
     roomName,
   })
-  return res
+  return res.data
 }
 
-export default createRoom
+export const getRoomById = async (roomId) => {
+  const res = await instance.get(`${API_ROUTES.ROOM_PATH}/${roomId}`)
+  return res.data
+}

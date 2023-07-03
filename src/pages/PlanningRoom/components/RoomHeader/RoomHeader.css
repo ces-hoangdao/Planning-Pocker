@@ -1,15 +1,7 @@
-.room {
-    background-color: #f9f9f9;
-}
-
-.room__container {
-    position: relative;
-    height: 100vh;
-    padding: 0 2rem;
-}
-
 .room__header {
-    padding-top: 1.3rem;
+    top: 1.3rem;
+    left: 2rem;
+    right: 2rem;
 }
 
 .site-logo {
@@ -31,8 +23,8 @@
     background-color: transparent;
     border-color: transparent;
     color: var(--text-color);
-    font-weight: 600;
-    font-size: 1.7rem;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-medium);
 }
 
 .btn.btn-primary.btn-dropdown:hover {
@@ -43,13 +35,13 @@
 
 .btn.btn-primary.btn-dropdown i {
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: var(--font-size-extra-small);
     margin-left: 0.3rem;
 }
 
 .dropdown-item.item {
     background-color: transparent;
-    font-size: 1.3rem;
+    font-size: var(--font-size-small);
 }
 
 .dropdown-item i {
@@ -68,19 +60,18 @@
 }
 
 .btn.btn-primary.btn-dropdown.btn-user-dropdown {
-    font-size: 1.4rem;
+    font-size: var(--font-size-medium);
 }
 
 .btn.btn-outline-primary.option-button {
     background-color: #fff;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
     border-radius: 0.6rem;
 }
 
 .btn.btn-outline-primary.option-button:hover {
     background-color: #ebf4ff;
 }
-
