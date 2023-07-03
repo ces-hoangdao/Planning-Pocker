@@ -9,6 +9,7 @@ import {
   NavItem,
   Button,
 } from "reactstrap"
+import InvitePlayers from "../InvitePlayers"
 import logo from "../../assets/logo.png"
 import ROUTES from "../../constants/routes"
 import "./RoomHeader.css"
@@ -71,9 +72,7 @@ function RoomHeader() {
                 </UncontrolledDropdown>
               </NavItem>
               <NavItem>
-                <Button color="primary" outline className="option-button">
-                  <i className="fa fa-user-plus" /> Invite players
-                </Button>
+                <InvitePlayers gameUrl={window.location.href} />
               </NavItem>
               <NavItem>
                 <Button color="primary" outline className="option-button">
