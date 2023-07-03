@@ -1,11 +1,13 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ToastContainer, Zoom } from "react-toastify"
-import Home from "./pages/Home"
-import PlanningRoom from "./pages/PlanningRoom"
+import "react-toastify/dist/ReactToastify.css"
+import GoogleLogin from "./pages/Login/Google"
 import NewGame from "./pages/NewGame"
 import { ROUTES } from "./constants/routes"
 import "./index.css"
+import Home from "./pages/Home"
+import PlanningRoom from "./pages/PlanningRoom"
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path={ROUTES.HOME_PATH} element={<Home />} />
           <Route path={ROUTES.NEW_GAME_PATH} element={<NewGame />} />
           <Route path={ROUTES.ROOM_PATH} element={<PlanningRoom />} />
+          <Route path={ROUTES.GOOGLE_USER_PATH} element={<GoogleLogin />} />
         </Routes>
       </BrowserRouter>
     </div>
