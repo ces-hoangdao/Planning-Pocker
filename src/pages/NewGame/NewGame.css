@@ -1,5 +1,6 @@
 .new-game {
     padding: 2rem;
+    margin: 0 auto;
 }
 
 .site-logo {
@@ -13,7 +14,7 @@
 
 .title-new-game {
     display: inline-block;
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-large);
     font-weight: var(--font-weight-large);
     color: var(--text-color);
     position: absolute;
@@ -30,7 +31,7 @@
 .subtitle {
     display: block;
     text-align: center;
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-large);
     font-weight: var(--font-weight-small);
     color: var(--text-color);
 }
@@ -39,10 +40,14 @@
     margin-top: 3rem;
 }
 
+.label-game-name, .input-game-name {
+    font-size: var(--font-size-medium);
+}
+
 .btn.btn-primary.btn-create-game {
     background-color: var(--primary-color);
-    height: 3.5rem;
-    font-size: var(--font-size-small);
+    height: 4rem;
+    font-size: var(--font-size-medium);
     font-weight: var(--font-weight-medium);
     border: 0;
     margin-top: 3rem;

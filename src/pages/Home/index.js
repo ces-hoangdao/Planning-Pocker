@@ -1,27 +1,22 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import { Button, Container } from "reactstrap"
-import ROUTES from "../../constants/routes"
+import { Container } from "reactstrap"
+import LoginAsGuest from "../LoginAsGuest"
+import SignUp from "../SignUp"
 import logo from "../../assets/logo.png"
 import steps from "../../constants/homeSteps"
 import "./Home.css"
-import SignUp from "../SignUp"
 
 function Home() {
   return (
     <div className="home">
-      <nav className="nav home-navbar d-flex justify-content-between">
+      <nav className="nav home-navbar d-flex justify-content-between align-items-center">
         <div className="title_container d-flex">
           <img src={logo} alt="logo" className="logo" />
           <div className="site-title">Planning Poker</div>
         </div>
         <div className="btn_container d-flex justify-content-evenly align-items-center">
           <SignUp />
-          <Link to={ROUTES.GUEST_PATH}>
-            <Button color="primary" size="lg" className="btn-login-as-guest">
-              Guest?
-            </Button>
-          </Link>
+          <LoginAsGuest />
         </div>
       </nav>
       <Container className="home-main-container d-flex flex-column justify-content-evenly">

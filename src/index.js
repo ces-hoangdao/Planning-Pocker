@@ -5,12 +5,15 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import "bootstrap/dist/css/bootstrap.css"
 import SocketContextProvider from "./context/SocketContext"
 import App from "./App"
+import UserContextProvider from "./context/userContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
-    <SocketContextProvider>
-      <App />
-    </SocketContextProvider>
+    <UserContextProvider>
+      <SocketContextProvider>
+        <App />
+      </SocketContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 )

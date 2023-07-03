@@ -31,6 +31,9 @@
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
     "prettier/prettier": "error",
-    "react/prop-types":"off"
+    "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off",
+    "no-underscore-dangle": "off",
+    "react/jsx-no-constructed-context-values": "off"
   }
 }
