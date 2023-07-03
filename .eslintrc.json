@@ -20,6 +20,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
+    "react/prop-types": "off",
+    "no-underscore-dangle": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-cycle": "off",
     "no-restricted-exports": "off",
@@ -31,9 +34,6 @@
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
     "prettier/prettier": "error",
-    "import/no-extraneous-dependencies": "off",
-    "react/prop-types": "off",
-    "no-underscore-dangle": "off",
     "react/jsx-no-constructed-context-values": "off"
   }
 }
