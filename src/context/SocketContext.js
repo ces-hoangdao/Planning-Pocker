@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect, useMemo } from "react"
 import SocketClient from "socket.io-client"
 import BASE_URL from "../constants/baseURL"
 
-export const SocketContext = createContext({})
+export const SocketContext = createContext(null)
 
 function SocketContextProvider({ children }) {
   const [socket] = useState(

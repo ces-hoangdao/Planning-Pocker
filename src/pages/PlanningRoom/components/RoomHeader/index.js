@@ -9,8 +9,11 @@ import {
   NavItem,
   Button,
 } from "reactstrap"
+import InvitePlayers from "../../../InvitePlayers"
+import ChangeProfile from "../../../ChangeProfile"
 import { UserContext } from "../../../../context/userContext"
 import { ROUTES } from "../../../../constants/routes"
+import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
 import "./RoomHeader.css"
 
@@ -50,26 +53,15 @@ function RoomHeader(props) {
                 color="primary"
                 className="btn-dropdown btn-user-dropdown"
               >
+                <img src={user.photoURL || defaultUserPhoto} alt="" />
                 {user.name}
                 <i className="fas fa-chevron-down" />
               </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem className="item">
-                  <i className="fa fa-user" />
-                  Change profile
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem className="item">
-                  <i className="fa fa-sign-out" />
-                  Sign out
-                </DropdownItem>
-              </DropdownMenu>
+              <ChangeProfile />
             </UncontrolledDropdown>
           </NavItem>
           <NavItem>
-            <Button color="primary" outline className="option-button">
-              <i className="fa fa-user-plus" /> Invite players
-            </Button>
+            <InvitePlayers gameUrl={window.location.href} />
           </NavItem>
           <NavItem>
             <Button color="primary" outline className="option-button">
