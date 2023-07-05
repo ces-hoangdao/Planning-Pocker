@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react"
-import getUserById from "../api/services/userService"
+import { getUserById } from "../api/services/userService"
 
 export const UserContext = createContext(null)
 

@@ -1,14 +1,20 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Button } from "reactstrap"
 import iconHandDown from "../../../../assets/icon_hand_down.png"
+import SOCKET_EVENT from "../../../../constants/socket_event"
+import { SocketContext } from "../../../../context/SocketContext"
 import "./RoomFooter.css"
 
 function RoomFooter(props) {
+  const { socket } = useContext(SocketContext)
+
   const { votingSystem } = props
   const [pickedCard, setPickedCard] = useState()
 
   const handlePickCard = (card) => {
-    setPickedCard(card !== pickedCard ? card : "")
+    const voteValue = card !== pickedCard ? card : ""
+    setPickedCard(voteValue)
+    socket.emit(SOCKET_EVENT.USER.VOTE, { voteValue })
   }
 
   return (

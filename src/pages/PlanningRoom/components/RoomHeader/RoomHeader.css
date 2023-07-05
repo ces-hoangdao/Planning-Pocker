@@ -56,11 +56,19 @@
 }
 
 .right-side-header {
-    width: 30rem;
+    width: 37rem;
 }
 
 .btn.btn-primary.btn-dropdown.btn-user-dropdown {
     font-size: var(--font-size-medium);
+}
+
+.btn.btn-primary.btn-dropdown.btn-user-dropdown img {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: transparent;
+    border-radius: 50%;
+    margin-right: 1rem;
 }
 
 .btn.btn-outline-primary.option-button {

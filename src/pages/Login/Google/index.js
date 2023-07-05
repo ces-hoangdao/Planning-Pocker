@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 import { useParams, Navigate } from "react-router-dom"
 import { ROUTES } from "../../../constants/routes"
 import { UserContext } from "../../../context/userContext"
-import getUserById from "../../../api/services/userService"
+import { getUserById } from "../../../api/services/userService"
 
 function GoogleLogin() {
   const { setUser } = useContext(UserContext)

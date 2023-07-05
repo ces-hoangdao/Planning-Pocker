@@ -30,12 +30,12 @@
 }
 
 .logo {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .site-title {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
     font-weight: var(--font-weight-large);
     text-decoration: none;
@@ -43,7 +43,7 @@
 }
 
 .btn_container {
-    width: 30rem;
+    width: 37rem;
     margin-left: 1.5rem;
 }
 
