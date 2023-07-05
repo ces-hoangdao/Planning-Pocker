@@ -50,7 +50,7 @@ function RoomHeader(props) {
                 color="primary"
                 className="btn-dropdown btn-user-dropdown"
               >
-                {user.username}
+                {user.name}
                 <i className="fas fa-chevron-down" />
               </DropdownToggle>
               <DropdownMenu>

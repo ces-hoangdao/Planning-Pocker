@@ -16,8 +16,9 @@ export const signUp = async (username, email, password) => {
 }
 
 export const login = async (email, password) => {
-  await instance.post("/auth/email/login", {
+  const res = await instance.post("/auth/email/login", {
     email,
     password,
   })
+  return res.data
 }
