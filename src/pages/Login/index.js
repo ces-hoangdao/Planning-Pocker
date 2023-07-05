@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import {
   Modal,
   Form,
@@ -19,6 +19,7 @@ import googleIcon from "../../assets/google.png"
 import BASE_URL from "../../constants/baseURL"
 import { ROUTES } from "../../constants/routes"
 import { login } from "../../api/services/authService"
+import { UserContext } from "../../context/userContext"
 
 const initialState = {
   email: "",
@@ -26,6 +27,8 @@ const initialState = {
 }
 
 function Login() {
+  const { setUser } = useContext(UserContext)
+
   const [userLoginData, setUserLoginData] = useState(initialState)
 
   const [errors, setErrors] = useState({
@@ -77,7 +80,9 @@ function Login() {
   const handleLogin = async () => {
     if (isValidData()) {
       try {
-        await login(userLoginData.email, userLoginData.password)
+        const res = await login(userLoginData.email, userLoginData.password)
+        localStorage.setItem("userId", res.data._id)
+        setUser(res.data)
         successLogin()
         toggle()
         setUserLoginData(initialState)

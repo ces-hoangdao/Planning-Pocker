@@ -30,10 +30,7 @@ function LoginAsGuest() {
       const res = await guestLogin(guestName)
       if (res.success) {
         localStorage.setItem("userId", res.data._id)
-        setUser({
-          userId: res.data._id,
-          username: res.data.name,
-        })
+        setUser(res.data)
         navigate(`${ROUTES.NEW_GAME_PATH}`)
       }
     }
