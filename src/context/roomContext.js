@@ -18,7 +18,7 @@ function RoomContextProvider({ children }) {
     if (room && user && room._id && user._id) {
       socket.emit(SOCKET_EVENT.USER.JOIN, {
         userId: user._id,
-        username: user.username,
+        username: user.name,
         roomId: room._id,
       })
     }
