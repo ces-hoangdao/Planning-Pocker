@@ -18,7 +18,7 @@ import logo from "../../../../assets/logo.png"
 import "./RoomHeader.css"
 
 function RoomHeader(props) {
-  const { gameName } = props
+  const { gameName, toggleOffCanvas } = props
   const { user } = useContext(UserContext)
 
   return (
@@ -64,7 +64,12 @@ function RoomHeader(props) {
             <InvitePlayers gameUrl={window.location.href} />
           </NavItem>
           <NavItem>
-            <Button color="primary" outline className="option-button">
+            <Button
+              color="primary"
+              outline
+              className="option-button"
+              onClick={toggleOffCanvas}
+            >
               <i className="fa fa-list" />
             </Button>
           </NavItem>

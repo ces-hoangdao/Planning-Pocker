@@ -1,17 +1,22 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { getRoomById } from "../../api/services/roomService"
 import RoomHeader from "./components/RoomHeader"
 import RoomFooter from "./components/RoomFooter"
-import { SocketContext } from "../../context/SocketContext"
-import SOCKET_EVENT from "../../constants/socket_event"
 import "./PlanningRoom.css"
-import { UserContext } from "../../context/userContext"
+import { getRoomById } from "../../api/services/roomService"
+import { RoomContext } from "../../context/roomContext"
+import Issues from "./components/Issues"
+import IssueContextProvider from "../../context/issueContext"
 
 function PlanningRoom() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleOffCanvas = () => {
+    setIsOpen(!isOpen)
+  }
+
   const [votingSystem, setVotingSystem] = useState([])
-  const { user } = useContext(UserContext)
-  const { socket } = useContext(SocketContext)
+  const { setRoom } = useContext(RoomContext)
 
   const [gameName, setGameName] = useState("")
 
@@ -21,25 +26,25 @@ function PlanningRoom() {
     const res = await getRoomById(id)
     setGameName(res.data.name === "" ? "Planning poker game" : res.data.name)
     setVotingSystem(res.data.votingSystem)
+    setRoom(res.data)
   }
-
   useEffect(() => {
     getGameName()
-    if (id) {
-      socket.emit(SOCKET_EVENT.USER.JOIN, {
-        userId: user._id,
-        username: user.name,
-        roomId: id,
-      })
-    }
   }, [id])
+
+  const widthClassName = isOpen ? "room__container--offcanvas" : "w-100"
 
   return (
     <div className="room">
-      <div className="room__container position-relative vh-100 w-100 d-flex flex-column justify-content-between">
-        <RoomHeader gameName={gameName} />
+      <div
+        className={`room__container position-relative vh-100 d-flex flex-column justify-content-between ${widthClassName}`}
+      >
+        <RoomHeader gameName={gameName} toggleOffCanvas={toggleOffCanvas} />
         <RoomFooter votingSystem={votingSystem} />
       </div>
+      <IssueContextProvider>
+        <Issues isOpen={isOpen} toggleOffCanvas={toggleOffCanvas} />
+      </IssueContextProvider>
     </div>
   )
 }
