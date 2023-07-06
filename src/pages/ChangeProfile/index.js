@@ -12,7 +12,9 @@ import {
   Label,
   Input,
 } from "reactstrap"
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import { ROUTES } from "../../constants/routes"
 import { updateUserProfile } from "../../api/services/userService"
 import { UserContext } from "../../context/userContext"
 import defaultUserPhoto from "../../assets/user_photo.png"
@@ -23,6 +25,7 @@ function ChangeProfile() {
   const [displayName, setDisplayName] = useState("")
   const [photo, setPhoto] = useState("")
   const [modal, setModal] = useState(false)
+  const navigate = useNavigate()
 
   const toggle = () => setModal(!modal)
 
@@ -55,6 +58,11 @@ function ChangeProfile() {
     }
   }
 
+  const handleSignOut = () => {
+    localStorage.removeItem("userId")
+    navigate(ROUTES.HOME_PATH)
+  }
+
   useEffect(() => {
     setDisplayName(user.name)
     setPhoto(user.photoURL)
@@ -68,7 +76,7 @@ function ChangeProfile() {
           Change profile
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem className="item">
+        <DropdownItem className="item" onClick={handleSignOut}>
           <i className="fa fa-sign-out" />
           Sign out
         </DropdownItem>

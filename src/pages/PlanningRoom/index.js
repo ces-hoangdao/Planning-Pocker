@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
 import RoomHeader from "./components/RoomHeader"
+import RoomBody from "./components/RoomBody"
 import RoomFooter from "./components/RoomFooter"
 import "./PlanningRoom.css"
 import { getRoomById } from "../../api/services/roomService"
@@ -40,6 +41,7 @@ function PlanningRoom() {
         className={`room__container position-relative vh-100 d-flex flex-column justify-content-between ${widthClassName}`}
       >
         <RoomHeader gameName={gameName} toggleOffCanvas={toggleOffCanvas} />
+        <RoomBody />
         <RoomFooter votingSystem={votingSystem} />
       </div>
       <IssueContextProvider>

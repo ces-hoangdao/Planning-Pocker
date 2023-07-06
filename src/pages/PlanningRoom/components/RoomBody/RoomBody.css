@@ -1,0 +1,64 @@
+.table-module-container {
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 0.8rem;
+    grid-template-areas:
+        "left top right"
+        "left center right"
+        "left bottom right";
+    grid-template-columns: 10.4rem 1fr 10.4rem;
+    width: auto;
+    margin: 0 auto;
+    min-height: 200px;
+}
+
+.table-module-top {
+    grid-area: top;
+    height: 7.5rem;
+}
+
+.table-module-left {
+    grid-area: left;
+    width: 7.5rem;
+}
+
+.table-module-right {
+    grid-area: right;
+    width: 7.5rem;
+}
+
+.table-module-center {
+    grid-area: center;
+    height: 18rem;
+    width: 40rem;
+    background-color: var(--table-background);
+    border: 0 solid var(--secondary-color);
+    border-radius: 5rem;
+    font-size: var(--font-size-large);
+}
+
+.table-module-bottom {
+    grid-area: bottom;
+    height: 13rem;
+}
+
+.player-card-empty {
+    background: var(--card-background);
+    height: 8.5rem;
+    width: 6rem;
+    margin: 1rem 0 0 0;
+    border-radius: 0.8rem;
+}
+
+.player-card-voting {
+    background: var(--primary-color);
+    height: 8.5rem;
+    width: 6rem;
+    margin: 1rem 0 0 0;
+    border-radius: 0.8rem;
+}
+
+.player-name-container {
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
+    margin: 0.5rem 0 0 0;
+}
