@@ -1,0 +1,8 @@
+.offcanvas-header .offcanvas-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.offcanvas.canvas-issue {
+  --bs-offcanvas-width: var(--offcanvas-width);
+}

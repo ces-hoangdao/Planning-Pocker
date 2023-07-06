@@ -1,7 +1,11 @@
 .room {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .room__container {
-    padding: 0 2rem;
+  padding: 0 2rem;
+}
+
+.room__container--offcanvas {
+  width: calc(100% - var(--offcanvas-width));
 }
