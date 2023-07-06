@@ -8,6 +8,7 @@ import { ROUTES } from "./constants/routes"
 import "./index.css"
 import Home from "./pages/Home"
 import PlanningRoom from "./pages/PlanningRoom"
+import RoomContextProvider from "./context/roomContext"
 
 function App() {
   return (
@@ -29,7 +30,14 @@ function App() {
         <Routes>
           <Route path={ROUTES.HOME_PATH} element={<Home />} />
           <Route path={ROUTES.NEW_GAME_PATH} element={<NewGame />} />
-          <Route path={ROUTES.ROOM_PATH} element={<PlanningRoom />} />
+          <Route
+            path={ROUTES.ROOM_PATH}
+            element={
+              <RoomContextProvider>
+                <PlanningRoom />
+              </RoomContextProvider>
+            }
+          />
           <Route path={ROUTES.GOOGLE_USER_PATH} element={<GoogleLogin />} />
         </Routes>
       </BrowserRouter>

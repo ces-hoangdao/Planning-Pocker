@@ -8,4 +8,10 @@ export const ROUTES = {
 
 export const API_ROUTES = {
   ROOM_PATH: "/room",
+  GUEST_LOGIN: "/auth/guest/login",
+  SIGNUP: "/auth/signup",
+  EMAIL_LOGIN: "/auth/email/login",
+  ISSUE: "/issue",
+  ISSUE_ROOM: "/issue/room",
+  USER: "/user",
 }
