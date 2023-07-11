@@ -9,7 +9,7 @@ import { RoomContext } from "../../../../context/roomContext"
 function Issues({ isOpen, toggleOffCanvas }) {
   const [isAddingIssue, setIsAddingIssue] = useState(false)
 
-  const { issueList, deleteIssue, emitSelectedIssue, addIssue } =
+  const { issueList, deleteIssue, emitSelectedIssue, addIssue, updateIssue } =
     useContext(IssueContext)
   const { selectedIssue } = useContext(RoomContext)
 
@@ -30,6 +30,7 @@ function Issues({ isOpen, toggleOffCanvas }) {
           deleteIssue={deleteIssue}
           emitSelectedIssue={emitSelectedIssue}
           selectedIssue={selectedIssue}
+          updateIssue={updateIssue}
         />
         {isAddingIssue ? (
           <IssueInput closeAddingIssue={closeAddingIssue} addIssue={addIssue} />

@@ -1,7 +1,13 @@
 import React from "react"
 import IssueBlock from "../IssueBlock"
 
-function IssueList({ issueList, deleteIssue, emitSelectedIssue, selectedIssue }) {
+function IssueList({
+  issueList,
+  deleteIssue,
+  emitSelectedIssue,
+  selectedIssue,
+  updateIssue,
+}) {
   return (
     issueList && (
       <div>
@@ -13,6 +19,7 @@ function IssueList({ issueList, deleteIssue, emitSelectedIssue, selectedIssue })
             deleteIssue={deleteIssue}
             emitSelectedIssue={emitSelectedIssue}
             selectedIssue={selectedIssue}
+            updateIssue={updateIssue}
           />
         ))}
       </div>
