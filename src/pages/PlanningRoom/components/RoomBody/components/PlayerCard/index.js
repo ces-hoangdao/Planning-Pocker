@@ -1,18 +1,28 @@
-import React, { useContext } from "react"
-import { UserContext } from "../../../../../../context/userContext"
+import React, { useEffect, useState } from "react"
 
-function PlayerCard({ vote }) {
-  const { user } = useContext(UserContext)
+function PlayerCard({ userVoting, isMainPlayer }) {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    setUser(userVoting)
+  }, [userVoting])
 
   return (
-    <div className="player-card-wrapper d-flex flex-column align-items-center justify-content-center">
+    user && (
       <div
-        className={vote.voteValue ? "player-card-voting" : "player-card-empty"}
-      ></div>
-      <div className="player-name-container" id={user.id}>
-        {user.name}
+        className="player-card-wrapper d-flex flex-column align-items-center justify-content-center"
+        key={user.id}
+      >
+        <div
+          className={`${
+            user.vote ? "player-card-voting" : "player-card-empty"
+          } d-flex align-items-center justify-content-center h3`}
+        >
+          {isMainPlayer ? "You" : ""}
+        </div>
+        <div className="player-name-container">{user.username}</div>
       </div>
-    </div>
+    )
   )
 }
 
