@@ -3,12 +3,15 @@ import { Form, Input } from "reactstrap"
 import "./IssueInput.css"
 
 function IssueInput({ closeAddingIssue, addIssue }) {
-  const [issueName, setIssueName] = useState("")
+  const [newIssueName, setNewIssueName] = useState("")
 
   const handleAddIssue = () => {
-    addIssue({ name: issueName })
     closeAddingIssue()
+    if (newIssueName.length > 0) {
+      addIssue({ name: newIssueName })
+    }
   }
+
   return (
     <Form
       onSubmit={handleAddIssue}
@@ -19,11 +22,11 @@ function IssueInput({ closeAddingIssue, addIssue }) {
         className="issue-input"
         placeholder="Enter a title for the issue"
         autoFocus
-        value={issueName}
-        onChange={(e) => setIssueName(e.target.value)}
+        onChange={(e) => setNewIssueName(e.target.value)}
       />
       <div className="d-flex justify-content-between mt-4">
         <button
+          id="cancel"
           type="button"
           className="w-50 me-3 btn-cancel"
           onClick={closeAddingIssue}

@@ -27,6 +27,7 @@ function IssueContextProvider({ children }) {
     socket.on(SOCKET_EVENT.ISSUE.SELECT, (issue) => {
       setSelectedIssue(issue)
     })
+    socket.on(SOCKET_EVENT.ISSUE.NAME_CHANGE, onUpdateIssue)
   }, [])
 
   useEffect(() => {
@@ -40,9 +41,24 @@ function IssueContextProvider({ children }) {
     setSelectedIssue(issue)
   }
 
+  const onUpdateIssue = (issue) => {
+    setSelectedIssue(issue)
+    setIssueList((oldIssueList) =>
+      oldIssueList.map((_issue) => {
+        if (_issue._id === issue._id) {
+          _issue.name = issue.name
+        }
+
+        return _issue
+      })
+    )
+  }
+
   const onDeleteIssue = (issue) => {
     setSelectedIssue((oldSelectedIssue) =>
-      oldSelectedIssue._id === issue._id ? null : oldSelectedIssue
+      oldSelectedIssue && oldSelectedIssue._id !== issue._id
+        ? oldSelectedIssue
+        : null
     )
     setIssueList((oldIssueList) =>
       oldIssueList.filter((_issue) => _issue._id !== issue._id)
@@ -58,6 +74,11 @@ function IssueContextProvider({ children }) {
     } catch {
       toastUnknownError()
     }
+  }
+
+  const updateIssue = (issue) => {
+    socket.emit(SOCKET_EVENT.ISSUE.NAME_CHANGE, issue)
+    onUpdateIssue(issue)
   }
 
   const deleteIssue = async (issueDelete) => {
@@ -90,7 +111,7 @@ function IssueContextProvider({ children }) {
 
   return (
     <IssueContext.Provider
-      value={{ issueList, deleteIssue, addIssue, emitSelectedIssue }}
+      value={{ issueList, deleteIssue, addIssue, emitSelectedIssue, updateIssue }}
     >
       {children}
     </IssueContext.Provider>
