@@ -1,10 +1,10 @@
 import React from "react"
 import "./ButtonReveal.css"
 
-function ButtonReveal({ vote, handleReveal }) {
+function ButtonReveal({ isRevealable, handleReveal }) {
   return (
     <div className="btn-container d-flex align-items-center">
-      {vote.voteValue ? (
+      {isRevealable ? (
         <button
           className="reveal-btn text-center"
           type="button"
