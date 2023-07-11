@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Button,
 } from "reactstrap"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -15,6 +16,7 @@ import "./SignUp.css"
 import validateEmail from "../../utils/ValidateUtils"
 import PASS_LIMIT from "../../constants/authConst"
 import { signUp } from "../../api/services/authService"
+import Login from "../Login"
 
 function SignUp() {
   const [userSignUpData, setUserSignUpData] = useState({
@@ -115,7 +117,9 @@ function SignUp() {
         <ModalBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
-              <Label for="userName">Username</Label>
+              <Label for="userName" className="fs-3">
+                Username
+              </Label>
               <Input
                 type="text"
                 name="userName"
@@ -124,7 +128,9 @@ function SignUp() {
                 value={userSignUpData.userName}
                 onChange={(event) => handleChange(event, "userName")}
                 // @ts-ignore
-                invalid={errorMessages.userNameError}
+                invalid={
+                  userSignUpData.userName ? errorMessages.userNameError : null
+                }
               />
             </FormGroup>
             {errors.userNameError && (
@@ -133,7 +139,9 @@ function SignUp() {
               </div>
             )}
             <FormGroup>
-              <Label for="email">Email</Label>
+              <Label for="email" className="fs-3">
+                Email
+              </Label>
               <Input
                 type="email"
                 name="email"
@@ -141,7 +149,7 @@ function SignUp() {
                 value={userSignUpData.email}
                 onChange={(event) => handleChange(event, "email")}
                 // @ts-ignore
-                invalid={errorMessages.emailError}
+                invalid={userSignUpData.email ? errorMessages.emailError : null}
                 className="input-signup"
               />
             </FormGroup>
@@ -151,7 +159,9 @@ function SignUp() {
               </div>
             )}
             <FormGroup>
-              <Label for="password">Password</Label>
+              <Label for="password" className="fs-3">
+                Password
+              </Label>
               <Input
                 type="password"
                 name="password"
@@ -159,7 +169,9 @@ function SignUp() {
                 value={userSignUpData.password}
                 onChange={(event) => handleChange(event, "password")}
                 // @ts-ignore
-                invalid={errorMessages.passwordError}
+                invalid={
+                  userSignUpData.password ? errorMessages.passwordError : null
+                }
                 className="input-signup"
               />
             </FormGroup>
@@ -169,7 +181,9 @@ function SignUp() {
               </div>
             )}
             <FormGroup>
-              <Label for="confirmPassword">Confirm Password</Label>
+              <Label for="confirmPassword" className="fs-3">
+                Confirm Password
+              </Label>
               <Input
                 type="password"
                 name="confirmPassword"
@@ -177,7 +191,11 @@ function SignUp() {
                 value={userSignUpData.confirmPassword}
                 onChange={(event) => handleChange(event, "confirmPassword")}
                 // @ts-ignore
-                invalid={errorMessages.confirmPasswordError}
+                invalid={
+                  userSignUpData.confirmPassword
+                    ? errorMessages.confirmPasswordError
+                    : null
+                }
                 className="input-signup"
               />
             </FormGroup>
@@ -188,21 +206,20 @@ function SignUp() {
             )}
           </Form>
         </ModalBody>
-        <ModalFooter className="d-flex justify-content-evenly">
-          <button
-            type="button"
-            className="btn-signup bg-transparent"
+        <ModalFooter className="d-flex flex-column justify-content-center align-items-center gap-4">
+          <Button
+            block
+            color="primary"
+            size="lg"
+            className="btn-signup"
             onClick={handleSubmit}
           >
-            Sign Up
-          </button>
-          <button
-            type="button"
-            className="btn-signup bg-transparent"
-            onClick={toggle}
-          >
-            Cancel
-          </button>
+            Sign up
+          </Button>
+          <div className="d-flex justify-content-center align-items-center bottom-option--login">
+            <span>Already have an account?</span>
+            <Login />
+          </div>
         </ModalFooter>
       </Modal>
     </div>

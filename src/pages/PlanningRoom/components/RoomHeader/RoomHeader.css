@@ -42,6 +42,7 @@
 .dropdown-item.item {
     background-color: transparent;
     font-size: var(--font-size-small);
+    padding: 0.7rem 1rem;
 }
 
 .dropdown-item i {
@@ -55,8 +56,42 @@
     box-shadow: 1px 2px 6px 0px rgba(200, 200, 200, 0.576);
 }
 
+.dropdown-header.item-game-name {
+    padding: 0.7rem 1.4rem;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+    gap: 1rem;
+}
+
+.dropdown-header.item-game-name i {
+    color: var(--text-color);
+}
+
+.dropdown-header.item-game-name .btn-done i {
+    color: var(--secondary-color);
+}
+
+.btn-edit, .btn-done {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 0;
+}
+
+.input-edit-game-name {
+    height: 3rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    font-weight: var(--font-weight-medium);
+}
+
+.input-edit-game-name:focus {
+    border-bottom: 1.5px solid var(--secondary-color);
+}
+
 .right-side-header {
-    width: 37rem;
+    gap: 3rem;
 }
 
 .btn.btn-primary.btn-dropdown.btn-user-dropdown {
@@ -66,6 +101,7 @@
 .btn.btn-primary.btn-dropdown.btn-user-dropdown img {
     width: 3.5rem;
     height: 3.5rem;
+    object-fit: cover;
     background-color: transparent;
     border-radius: 50%;
     margin-right: 1rem;

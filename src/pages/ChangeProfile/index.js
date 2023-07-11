@@ -60,12 +60,15 @@ function ChangeProfile() {
 
   const handleSignOut = () => {
     localStorage.removeItem("userId")
+    setUser({})
     navigate(ROUTES.HOME_PATH)
   }
 
   useEffect(() => {
-    setDisplayName(user.name)
-    setPhoto(user.photoURL)
+    if (user) {
+      setDisplayName(user.name)
+      setPhoto(user.photoURL)
+    }
   }, [user])
 
   return (

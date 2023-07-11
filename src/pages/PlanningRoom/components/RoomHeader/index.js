@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -12,7 +12,10 @@ import {
 import InvitePlayers from "../../../InvitePlayers"
 import ChangeProfile from "../../../ChangeProfile"
 import { UserContext } from "../../../../context/userContext"
+import { RoomContext } from "../../../../context/roomContext"
+import { SocketContext } from "../../../../context/SocketContext"
 import { ROUTES } from "../../../../constants/routes"
+import SOCKET_EVENT from "../../../../constants/socket_event"
 import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
 import "./RoomHeader.css"
@@ -20,6 +23,48 @@ import "./RoomHeader.css"
 function RoomHeader(props) {
   const { gameName, toggleOffCanvas } = props
   const { user } = useContext(UserContext)
+  const { room, setRoom } = useContext(RoomContext)
+  const { socket } = useContext(SocketContext)
+  const [isEditing, setIsEditing] = useState(false)
+  const [roomName, setRoomName] = useState("")
+  const inputRef = useRef(null)
+
+  const handleInputGameNameChange = (event) => {
+    setRoomName(event.target.value)
+  }
+
+  const handleInputGameNameFocus = () => {
+    inputRef.current.focus()
+    setIsEditing(true)
+  }
+
+  const handleInputGameNameBlur = () => {
+    handleSubmit()
+    setIsEditing(false)
+  }
+
+  const handleSubmit = () => {
+    setRoom((current) => ({
+      ...current,
+      name: roomName,
+    }))
+    socket.emit(SOCKET_EVENT.ROOM.NAME_CHANGE, { name: roomName })
+  }
+
+  useEffect(() => {
+    if (room) {
+      setRoomName(room.name || "Planning poker game")
+    }
+  }, [room])
+
+  useEffect(() => {
+    socket.on(SOCKET_EVENT.ROOM.NAME_CHANGE, (data) => {
+      setRoom((current) => ({
+        ...current,
+        name: data.name,
+      }))
+    })
+  }, [])
 
   return (
     <div className="position-absolute d-flex justify-content-between align-items-center room__header">
@@ -33,9 +78,38 @@ function RoomHeader(props) {
             <i className="fas fa-chevron-down" />
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem className="item">
-              <i className="fa fa-gear" />
-              Game settings
+            <DropdownItem
+              className="d-flex justify-content-between align-items-center item-game-name"
+              header
+            >
+              <input
+                id="input-edit-game-name"
+                className="input-edit-game-name"
+                ref={inputRef}
+                value={roomName}
+                onChange={handleInputGameNameChange}
+                onFocus={handleInputGameNameFocus}
+                onBlur={handleInputGameNameBlur}
+                maxLength={20}
+              />
+              {isEditing && (
+                <button
+                  type="button"
+                  className="btn-done"
+                  onClick={handleInputGameNameBlur}
+                >
+                  <i className="fa fa-check" />
+                </button>
+              )}
+              {!isEditing && (
+                <button
+                  type="button"
+                  className="btn-edit"
+                  onClick={handleInputGameNameFocus}
+                >
+                  <i className="fa-regular fa-pen-to-square" />
+                </button>
+              )}
             </DropdownItem>
             <DropdownItem divider />
             <DropdownItem className="item">
@@ -45,8 +119,8 @@ function RoomHeader(props) {
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>
-      <div className="right-side-header">
-        <Nav className="d-flex justify-content-between align-items-center">
+      <Nav className="d-flex justify-content-end align-items-center right-side-header">
+        {user && (
           <NavItem>
             <UncontrolledDropdown direction="down" className="dropdown-container">
               <DropdownToggle
@@ -60,21 +134,21 @@ function RoomHeader(props) {
               <ChangeProfile />
             </UncontrolledDropdown>
           </NavItem>
-          <NavItem>
-            <InvitePlayers gameUrl={window.location.href} />
-          </NavItem>
-          <NavItem>
-            <Button
-              color="primary"
-              outline
-              className="option-button"
-              onClick={toggleOffCanvas}
-            >
-              <i className="fa fa-list" />
-            </Button>
-          </NavItem>
-        </Nav>
-      </div>
+        )}
+        <NavItem>
+          <InvitePlayers gameUrl={window.location.href} />
+        </NavItem>
+        <NavItem>
+          <Button
+            color="primary"
+            outline
+            className="option-button"
+            onClick={toggleOffCanvas}
+          >
+            <i className="fa fa-list" />
+          </Button>
+        </NavItem>
+      </Nav>
     </div>
   )
 }

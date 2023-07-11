@@ -21,7 +21,7 @@ function GoogleLogin() {
     toast.success("Login success!")
   }, [])
 
-  return <Navigate to={ROUTES.NEW_GAME_PATH} />
+  return <Navigate to={ROUTES.HOME_PATH} />
 }
 
 export default GoogleLogin
