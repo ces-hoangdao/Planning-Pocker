@@ -9,7 +9,6 @@
     color: var(--secondary-color);
     border: none;
     font-weight: var(--font-weight-large);
-    
 }
 
 .modal-title{
@@ -80,4 +79,21 @@
     font-size: var(--font-size-medium);
     color: #e74c3c;
     font-weight: var(--font-weight-medium);
+}
+
+.btn.btn-primary.btn-signup {
+    background-color: var(--primary-color);
+    color: white;
+    height: 4rem;
+    font-weight: var(--font-weight-medium);
+    border: 0;
+}
+
+.btn.btn-primary.btn-signup:hover {
+    background-color: var(--secondary-color);
+}
+
+.bottom-option--login span,
+.bottom-option--login .btn-login {
+    font-size: var(--font-size-small);
 }

@@ -1,21 +1,19 @@
 import React, { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
+import { UserContext } from "../../context/userContext"
+import Login from "../Login"
 import SignUp from "../SignUp"
 import { guestLogin } from "../../api/services/authService"
-import { ROUTES } from "../../constants/routes"
 import "./LoginAsGuest.css"
-import { UserContext } from "../../context/userContext"
 
-function LoginAsGuest() {
-  const [modal, setModal] = useState(false)
+function LoginAsGuest({ isLoggedIn }) {
+  const [showModal, setShowModal] = useState(!isLoggedIn)
   const [guestName, setGuestName] = useState("")
   const [showError, setShowError] = useState(false)
 
   const { setUser } = useContext(UserContext)
-  const navigate = useNavigate()
 
-  const toggle = () => setModal(!modal)
+  const toggle = () => setShowModal(!showModal)
 
   const handleInputChange = (event) => {
     setGuestName(event.target.value)
@@ -31,18 +29,15 @@ function LoginAsGuest() {
       if (res.success) {
         localStorage.setItem("userId", res.data._id)
         setUser(res.data)
-        navigate(`${ROUTES.NEW_GAME_PATH}`)
+        toggle()
       }
     }
   }
 
   return (
     <div className="login-as-guest">
-      <Button color="primary" className="btn-start-new-game" onClick={toggle}>
-        Start new game
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} centered className="modal-guest">
-        <ModalHeader toggle={toggle}>Choose your display name</ModalHeader>
+      <Modal isOpen={showModal} centered className="modal-guest">
+        <ModalHeader>Choose your display name</ModalHeader>
         <ModalBody>
           <form className="form-login-as-guest" onSubmit={handleSubmit}>
             <input
@@ -70,9 +65,7 @@ function LoginAsGuest() {
           </form>
         </ModalBody>
         <ModalFooter className="d-flex justify-content-between align-items-center">
-          <Button outline color="primary" className="option" onClick={toggle}>
-            Login
-          </Button>
+          <Login />
           <SignUp />
         </ModalFooter>
       </Modal>

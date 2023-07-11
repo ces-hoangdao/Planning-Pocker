@@ -8,11 +8,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Button,
 } from "reactstrap"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-
-import "./Login.css"
+import SignUp from "../SignUp"
 import validateEmail from "../../utils/ValidateUtils"
 import PASS_LIMIT from "../../constants/authConst"
 import googleIcon from "../../assets/google.png"
@@ -20,6 +20,7 @@ import BASE_URL from "../../constants/baseURL"
 import { ROUTES } from "../../constants/routes"
 import { login } from "../../api/services/authService"
 import { UserContext } from "../../context/userContext"
+import "./Login.css"
 
 const initialState = {
   email: "",
@@ -86,7 +87,7 @@ function Login() {
         successLogin()
         toggle()
         setUserLoginData(initialState)
-        navigate(ROUTES.NEW_GAME_PATH)
+        navigate(ROUTES.HOME_PATH)
       } catch (err) {
         failLogin()
       }
@@ -95,7 +96,7 @@ function Login() {
     }
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault()
     setErrors(errorMessages)
     if (isValidData()) {
@@ -113,21 +114,28 @@ function Login() {
       <Modal
         isOpen={loginModal}
         toggle={toggle}
-        className="modal-dialog modal-dialog-centered"
+        className="modal-dialog modal-dialog-centered modal-login"
       >
         <ModalHeader toggle={toggle}>Login</ModalHeader>
-        <ModalBody>
+        <ModalBody className="d-flex flex-column justify-content-evenly mt-3">
           <button
             type="button"
             className="btn-google d-flex align-items-center justify-content-center"
             onClick={handleGoogleLogin}
           >
             <img src={googleIcon} alt="google" className="google-icon" />
-            <span>Login with Google</span>
+            <span className="fs-3">Login with Google</span>
           </button>
-          <Form>
+          <div className="d-flex justify-content-center align-items-center mt-4">
+            <div className="line"></div>
+            <div className="px-3 fs-3">or</div>
+            <div className="line"></div>
+          </div>
+          <Form className="form-login">
             <FormGroup>
-              <Label for="email">Email</Label>
+              <Label for="email" className="fs-3">
+                Email
+              </Label>
               <Input
                 type="email"
                 name="email"
@@ -135,7 +143,7 @@ function Login() {
                 value={userLoginData.email}
                 onChange={handleChange}
                 // @ts-ignore
-                invalid={errorMessages.emailError}
+                invalid={userLoginData.email ? errorMessages.emailError : null}
                 className="input-login"
               />
             </FormGroup>
@@ -145,7 +153,9 @@ function Login() {
               </div>
             )}
             <FormGroup>
-              <Label for="password">Password</Label>
+              <Label for="password" className="fs-3">
+                Password
+              </Label>
               <Input
                 type="password"
                 name="password"
@@ -153,7 +163,7 @@ function Login() {
                 value={userLoginData.password}
                 onChange={handleChange}
                 // @ts-ignore
-                invalid={errorMessages.passwordError}
+                invalid={userLoginData.password ? errorMessages.passwordError : null}
                 className="input-login"
               />
             </FormGroup>
@@ -164,21 +174,20 @@ function Login() {
             )}
           </Form>
         </ModalBody>
-        <ModalFooter className="d-flex justify-content-evenly">
-          <button
-            type="button"
-            className="btn-login bg-transparent"
+        <ModalFooter className="d-flex flex-column justify-content-center align-items-center gap-4">
+          <Button
+            block
+            color="primary"
+            size="lg"
+            className="btn-login fs-3"
             onClick={handleSubmit}
           >
             Login
-          </button>
-          <button
-            type="button"
-            className="btn-login bg-transparent"
-            onClick={toggle}
-          >
-            Cancel
-          </button>
+          </Button>
+          <div className="d-flex justify-content-center align-items-center bottom-option--signup">
+            <span>Create new account?</span>
+            <SignUp />
+          </div>
         </ModalFooter>
       </Modal>
     </div>

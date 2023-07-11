@@ -46,6 +46,7 @@ function NewGame() {
               value={roomName}
               type="text"
               onChange={handleInputChange}
+              autoFocus
             />
           </FormGroup>
           <Button
