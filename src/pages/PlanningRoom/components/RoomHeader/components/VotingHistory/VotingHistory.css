@@ -1,0 +1,12 @@
+.history-modal {
+  --bs-modal-width: 90vw;
+}
+
+.history-modal__body-header {
+  font-size: small;
+}
+
+.history-modal__body-table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}

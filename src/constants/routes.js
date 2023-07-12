@@ -14,4 +14,5 @@ export const API_ROUTES = {
   ISSUE: "/issue",
   ISSUE_ROOM: "/issue/room",
   USER: "/user",
+  ROOM_HISTORY: "/room/history",
 }

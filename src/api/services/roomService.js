@@ -12,3 +12,8 @@ export const getRoomById = async (roomId) => {
   const res = await instance.get(`${API_ROUTES.ROOM_PATH}/${roomId}`)
   return res.data
 }
+
+export const getVotingHistory = async (roomId) => {
+  const res = await instance.get(`${API_ROUTES.ROOM_HISTORY}/${roomId}`)
+  return res.data
+}
