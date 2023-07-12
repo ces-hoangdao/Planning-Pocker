@@ -9,8 +9,6 @@ function RoomContextProvider({ children }) {
   const [room, setRoom] = useState(null)
   const [users, setUsers] = useState([])
   const [selectedIssue, setSelectedIssue] = useState(null)
-  const [voteAverage, setVoteAverage] = useState(null)
-  const [voteCount, setVoteCount] = useState(null)
 
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserContext)
@@ -33,13 +31,9 @@ function RoomContextProvider({ children }) {
         room,
         users,
         selectedIssue,
-        voteAverage,
-        voteCount,
         setRoom,
         setUsers,
         setSelectedIssue,
-        setVoteCount,
-        setVoteAverage,
       }}
     >
       {children}

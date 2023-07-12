@@ -3,7 +3,8 @@
 }
 
 .room__container {
-  padding: 0 2rem;
+  padding: 2rem;
+  gap: 3rem;
 }
 
 .room__container--offcanvas {

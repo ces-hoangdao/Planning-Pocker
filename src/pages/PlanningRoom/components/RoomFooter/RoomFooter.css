@@ -1,14 +1,10 @@
-.room__footer {
+.card-list-section {
     height: 10rem;
-    bottom: 1.3rem;
-    left: 2rem;
-    right: 2rem;
     text-align: center;
 }
 
 .choose-your-card {
     font-size: var(--font-size-medium);
-    margin-bottom: 1.5rem;
 }
 
 .icon-hand-down {
@@ -27,7 +23,7 @@
     top: 0;
     left: 30%;
     right: 30%;
-    gap: 1rem;
+    gap: 3rem;
 }
 
 .btn.btn-outline-primary.card-button {
@@ -58,3 +54,37 @@
     border-radius: 0.8rem;
     transform: translateY(-0.7rem);
 }
+
+.result-average-container {
+    height: 17rem;
+}
+
+.average-label {
+    font-size: var(--font-size-medium);
+    color: #a8aeb2;
+}
+
+.result-card {
+    width: 6rem;
+    height: 9rem;
+    border: 2px solid black;
+    border-radius: 0.6rem;
+    text-align: center;
+    padding: 2.5rem 0;
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-medium);
+    margin: 1rem 0;
+}
+
+.vote-count {
+    font-size: var(--font-size-medium);
+}
+
+.coffee-time-label {
+    font-size: var(--font-size-medium);
+}
+
+.coffee-time i {
+    font-size: var(--font-size-modal-title);
+}
+

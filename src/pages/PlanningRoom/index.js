@@ -9,33 +9,41 @@ import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
 import { SocketContext } from "../../context/SocketContext"
 import SOCKET_EVENT from "../../constants/socket_event"
-import Issues from "./components/Issues"
 import IssueContextProvider from "../../context/issueContext"
+import Issues from "./components/Issues"
 import "./PlanningRoom.css"
 
 function PlanningRoom() {
   const { room, setRoom, setUsers } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
-  const { id } = useParams()
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isRevealed, setIsRevealed] = useState(false)
+  const [voteResult, setVoteResult] = useState(null)
+
+  const { id } = useParams()
 
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen)
   }
 
   useEffect(() => {
-    socket.on(SOCKET_EVENT.ROOM.REVEAL, () => {
+    socket.on(SOCKET_EVENT.ROOM.REVEAL, (data) => {
+      setVoteResult(data)
       setIsRevealed(true)
+    })
+    socket.on(SOCKET_EVENT.ROOM.START, () => {
+      setIsRevealed(false)
     })
   }, [])
 
   const getGameName = async () => {
     const res = await getRoomById(id)
-    const { voting, ...roomData } = res.data
+    const { voting, currentResults, ...roomData } = res.data
     setRoom(roomData)
     setUsers(voting)
+    setVoteResult(currentResults)
   }
 
   const checkUserLoggedIn = async () => {
@@ -53,6 +61,10 @@ function PlanningRoom() {
     getGameName()
   }, [id])
 
+  useEffect(() => {
+    if (room) setIsRevealed(room.status === "concluded")
+  }, [room])
+
   const widthClassName = isOpen ? "room__container--offcanvas" : "w-100"
 
   return (
@@ -60,14 +72,18 @@ function PlanningRoom() {
       <div className="room">
         {!isLoggedIn && <LoginAsGuest isLoggedIn={isLoggedIn} />}
         <div
-          className={`room__container position-relative vh-100 d-flex flex-column justify-content-between ${widthClassName}`}
+          className={`room__container vh-100 d-flex flex-column justify-content-between ${widthClassName}`}
         >
           <RoomHeader
             gameName={room.name || "Planning poker game"}
             toggleOffCanvas={toggleOffCanvas}
           />
           <RoomBody isRevealed={isRevealed} />
-          <RoomFooter votingSystem={room.votingSystem} isRevealed={isRevealed} />
+          <RoomFooter
+            votingSystem={room.votingSystem}
+            isRevealed={isRevealed}
+            voteResult={voteResult}
+          />
         </div>
         <IssueContextProvider>
           <Issues isOpen={isOpen} toggleOffCanvas={toggleOffCanvas} />
