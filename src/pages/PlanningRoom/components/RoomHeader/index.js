@@ -71,7 +71,7 @@ function RoomHeader(props) {
   }, [])
 
   return (
-    <div className="position-absolute d-flex justify-content-between align-items-center room__header">
+    <div className="d-flex justify-content-between align-items-center room__header">
       <div className="left-side-header">
         <Link to={ROUTES.HOME_PATH}>
           <img className="site-logo" src={logo} alt="" />

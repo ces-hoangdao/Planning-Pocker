@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react"
 import "./RoomBody.css"
 import PlayerCard from "./components/PlayerCard"
 import ButtonReveal from "./components/ButtonReveal"
+import ButtonStart from "./components/ButtonStart"
 import { UserContext } from "../../../../context/userContext"
 import { SocketContext } from "../../../../context/SocketContext"
 import { RoomContext } from "../../../../context/roomContext"
@@ -24,6 +25,10 @@ function RoomBody({ isRevealed }) {
   const bottomUserList = users.filter(
     (_user, index) => index % 2 === 0 && index !== THIRD_USER_INDEX
   )
+
+  const clearUserVoting = () => {
+    setUsers((current) => current.map((_user) => ({ ..._user, vote: null })))
+  }
 
   useEffect(() => {
     for (let i = 0; i < users.length; i += 1) {
@@ -58,16 +63,22 @@ function RoomBody({ isRevealed }) {
         })
       )
     })
+    socket.on(SOCKET_EVENT.ROOM.START, clearUserVoting)
   }, [])
 
   const handleReveal = () => {
     socket.emit(SOCKET_EVENT.ROOM.REVEAL)
+    setRevealable(false)
+  }
+
+  const handleStart = () => {
+    socket.emit(SOCKET_EVENT.ROOM.START)
   }
 
   return (
-    <div className="room-body top-50 start-50 translate-middle d-flex position-absolute justify-content-center">
-      <div className="table-module-wrapper d-flex align-items-center justify-content-center">
-        <div className="table-module-container d-inline-grid ">
+    <div className="room-body d-flex justify-content-center">
+      <div className="table-module-wrapper vw-100 d-flex align-items-center justify-content-center">
+        <div className="table-module-container d-inline-grid">
           <div className="table-module-top d-flex align-items-center justify-content-center">
             {topUserList.map((_user) => (
               <PlayerCard
@@ -106,8 +117,19 @@ function RoomBody({ isRevealed }) {
               />
             ))}
           </div>
-          <div className="table-module-center d-flex flex-column align-items-center justify-content-center">
-            <ButtonReveal isRevealable={isRevealable} handleReveal={handleReveal} />
+          <div
+            className={`table-module-center ${
+              isRevealable ? "voting" : ""
+            } d-flex flex-column align-items-center justify-content-center`}
+          >
+            {isRevealed ? (
+              <ButtonStart handleStart={handleStart} />
+            ) : (
+              <ButtonReveal
+                isRevealable={isRevealable}
+                handleReveal={handleReveal}
+              />
+            )}
           </div>
         </div>
       </div>
