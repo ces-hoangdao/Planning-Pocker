@@ -17,11 +17,15 @@ import { toast } from "react-toastify"
 import { ROUTES } from "../../constants/routes"
 import { updateUserProfile } from "../../api/services/userService"
 import { UserContext } from "../../context/userContext"
+import { SocketContext } from "../../context/SocketContext"
 import defaultUserPhoto from "../../assets/user_photo.png"
+import SOCKET_EVENT from "../../constants/socket_event"
 import "./ChangeProfile.css"
 
 function ChangeProfile() {
   const { user, setUser } = useContext(UserContext)
+  const { socket } = useContext(SocketContext)
+
   const [displayName, setDisplayName] = useState("")
   const [photo, setPhoto] = useState("")
   const [modal, setModal] = useState(false)
@@ -51,6 +55,7 @@ function ChangeProfile() {
       const res = await updateUserProfile(user._id, displayName, photo)
       if (res.success) {
         setUser(res.data)
+        socket.emit(SOCKET_EVENT.USER.NAME_CHANGE, { name: displayName })
         toggle()
       }
     } catch {

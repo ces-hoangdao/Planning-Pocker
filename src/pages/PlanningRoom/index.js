@@ -14,7 +14,7 @@ import IssueContextProvider from "../../context/issueContext"
 import "./PlanningRoom.css"
 
 function PlanningRoom() {
-  const { room, setRoom } = useContext(RoomContext)
+  const { room, setRoom, setUsers } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
   const { id } = useParams()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -33,7 +33,9 @@ function PlanningRoom() {
 
   const getGameName = async () => {
     const res = await getRoomById(id)
-    setRoom(res.data)
+    const { voting, ...roomData } = res.data
+    setRoom(roomData)
+    setUsers(voting)
   }
 
   const checkUserLoggedIn = async () => {

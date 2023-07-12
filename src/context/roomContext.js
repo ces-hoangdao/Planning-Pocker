@@ -7,6 +7,7 @@ export const RoomContext = createContext(null)
 
 function RoomContextProvider({ children }) {
   const [room, setRoom] = useState(null)
+  const [users, setUsers] = useState([])
   const [selectedIssue, setSelectedIssue] = useState(null)
   const [voteAverage, setVoteAverage] = useState(null)
   const [voteCount, setVoteCount] = useState(null)
@@ -16,22 +17,26 @@ function RoomContextProvider({ children }) {
 
   useEffect(() => {
     if (room && user && room._id && user._id) {
-      socket.emit(SOCKET_EVENT.USER.JOIN, {
-        userId: user._id,
-        username: user.name,
-        roomId: room._id,
-      })
+      if (users.findIndex((_user) => _user.userId === user._id) === -1) {
+        socket.emit(SOCKET_EVENT.USER.JOIN, {
+          userId: user._id,
+          username: user.name,
+          roomId: room._id,
+        })
+      }
     }
-  }, [room, user])
+  }, [room, user._id])
 
   return (
     <RoomContext.Provider
       value={{
         room,
+        users,
         selectedIssue,
         voteAverage,
         voteCount,
         setRoom,
+        setUsers,
         setSelectedIssue,
         setVoteCount,
         setVoteAverage,

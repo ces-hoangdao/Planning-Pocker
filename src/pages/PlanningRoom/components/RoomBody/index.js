@@ -12,10 +12,9 @@ const FORTH_USER_INDEX = 3
 
 function RoomBody({ isRevealed }) {
   const { socket } = useContext(SocketContext)
-  const { room } = useContext(RoomContext)
   const { user } = useContext(UserContext)
+  const { users, setUsers } = useContext(RoomContext)
 
-  const [users, setUsers] = useState([])
   const [isRevealable, setRevealable] = useState(false)
 
   const topUserList = users.filter(
@@ -38,12 +37,7 @@ function RoomBody({ isRevealed }) {
 
   useEffect(() => {
     socket.on(SOCKET_EVENT.USER.JOIN, (_user) => {
-      setUsers((current) => {
-        for (let i = 0; i < users.length; i += 1) {
-          if (users[i].userId === _user.userId) return current
-        }
-        return [...current, _user]
-      })
+      setUsers((current) => [...current, _user])
     })
     socket.on(SOCKET_EVENT.USER.LEAVE, ({ userId }) => {
       setUsers((current) => current.filter((_user) => _user.userId !== userId))
@@ -56,11 +50,15 @@ function RoomBody({ isRevealed }) {
         })
       )
     })
+    socket.on(SOCKET_EVENT.USER.NAME_CHANGE, ({ userId, name }) => {
+      setUsers((current) =>
+        current.map((_user) => {
+          if (_user.userId === userId) return { ..._user, username: name }
+          return _user
+        })
+      )
+    })
   }, [])
-
-  useEffect(() => {
-    if (room && room._id) setUsers(room.voting)
-  }, [room])
 
   const handleReveal = () => {
     socket.emit(SOCKET_EVENT.ROOM.REVEAL)
