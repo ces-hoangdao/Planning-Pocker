@@ -19,6 +19,7 @@ import SOCKET_EVENT from "../../../../constants/socket_event"
 import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
 import "./RoomHeader.css"
+import VotingHistory from "./components/VotingHistory"
 
 function RoomHeader(props) {
   const { gameName, toggleOffCanvas } = props
@@ -28,6 +29,9 @@ function RoomHeader(props) {
   const [isEditing, setIsEditing] = useState(false)
   const [roomName, setRoomName] = useState("")
   const inputRef = useRef(null)
+
+  const [modalHistory, setModalHistory] = useState(false)
+  const toggleModalHistory = () => setModalHistory((prev) => !prev)
 
   const handleInputGameNameChange = (event) => {
     setRoomName(event.target.value)
@@ -112,10 +116,14 @@ function RoomHeader(props) {
               )}
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem className="item">
+            <DropdownItem className="item" onClick={toggleModalHistory}>
               <i className="fa fa-history" />
               Voting history
             </DropdownItem>
+            <VotingHistory
+              modalHistory={modalHistory}
+              toggleModalHistory={toggleModalHistory}
+            />
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>
