@@ -1,6 +1,6 @@
 .table-module-container {
     grid-template-rows: auto 1fr auto;
-    grid-gap: 0.8rem;
+    grid-gap: 4rem;
     grid-template-areas:
         "left top right"
         "left center right"
@@ -43,17 +43,29 @@
 
 .player-card-empty {
     background: var(--card-background);
-    height: 8.5rem;
-    width: 6rem;
+    width: var(--player-card-width);
+    height: var(--player-card-height);
     margin: 1rem 0 0 0;
     border-radius: 0.8rem;
 }
 
 .player-card-voting {
     background: var(--primary-color);
-    height: 8.5rem;
-    width: 6rem;
+    width: var(--player-card-width);
+    height: var(--player-card-height);
     margin: 1rem 0 0 0;
+    border-radius: 0.8rem;
+}
+
+.player-card-revealed {
+    width: var(--player-card-width);
+    height: var(--player-card-height);
+    margin: 1rem 0 0 0;
+    background-color: white;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-large);
     border-radius: 0.8rem;
 }
 

@@ -10,7 +10,7 @@ import SOCKET_EVENT from "../../../../constants/socket_event"
 const THIRD_USER_INDEX = 2
 const FORTH_USER_INDEX = 3
 
-function RoomBody() {
+function RoomBody({ isRevealed }) {
   const { socket } = useContext(SocketContext)
   const { room } = useContext(RoomContext)
   const { user } = useContext(UserContext)
@@ -69,13 +69,14 @@ function RoomBody() {
   return (
     <div className="room-body top-50 start-50 translate-middle d-flex position-absolute justify-content-center">
       <div className="table-module-wrapper d-flex align-items-center justify-content-center">
-        <div className="table-module-container d-inline-grid">
+        <div className="table-module-container d-inline-grid ">
           <div className="table-module-top d-flex align-items-center justify-content-center">
             {topUserList.map((_user) => (
               <PlayerCard
                 userVoting={_user}
                 key={_user.userId}
                 isMainPlayer={user._id === _user.userId}
+                isRevealed={isRevealed}
               />
             ))}
           </div>
@@ -84,6 +85,7 @@ function RoomBody() {
               <PlayerCard
                 userVoting={users[THIRD_USER_INDEX]}
                 isMainPlayer={user._id === users[THIRD_USER_INDEX].userId}
+                isRevealed={isRevealed}
               />
             )}
           </div>
@@ -92,6 +94,7 @@ function RoomBody() {
               <PlayerCard
                 userVoting={users[FORTH_USER_INDEX]}
                 isMainPlayer={user._id === users[FORTH_USER_INDEX].userId}
+                isRevealed={isRevealed}
               />
             )}
           </div>
@@ -101,6 +104,7 @@ function RoomBody() {
                 userVoting={_user}
                 key={_user.userId}
                 isMainPlayer={user._id === _user.userId}
+                isRevealed={isRevealed}
               />
             ))}
           </div>

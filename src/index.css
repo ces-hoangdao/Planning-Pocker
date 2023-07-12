@@ -17,6 +17,9 @@
   --font-weight-medium: 600;
   --font-weight-small: 500;
 
+  --player-card-width: 4.8rem;
+  --player-card-height: 7.5rem;
+
   --offcanvas-width: 30rem;
 }
 
