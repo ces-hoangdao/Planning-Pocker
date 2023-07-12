@@ -7,19 +7,29 @@ import LoginAsGuest from "../LoginAsGuest"
 import { getRoomById } from "../../api/services/roomService"
 import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
+import { SocketContext } from "../../context/SocketContext"
+import SOCKET_EVENT from "../../constants/socket_event"
 import Issues from "./components/Issues"
 import IssueContextProvider from "../../context/issueContext"
 import "./PlanningRoom.css"
 
 function PlanningRoom() {
   const { room, setRoom } = useContext(RoomContext)
+  const { socket } = useContext(SocketContext)
   const { id } = useParams()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [isRevealed, setIsRevealed] = useState(false)
 
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen)
   }
+
+  useEffect(() => {
+    socket.on(SOCKET_EVENT.ROOM.REVEAL, () => {
+      setIsRevealed(true)
+    })
+  }, [])
 
   const getGameName = async () => {
     const res = await getRoomById(id)
@@ -54,8 +64,8 @@ function PlanningRoom() {
             gameName={room.name || "Planning poker game"}
             toggleOffCanvas={toggleOffCanvas}
           />
-          <RoomBody />
-          <RoomFooter votingSystem={room.votingSystem} />
+          <RoomBody isRevealed={isRevealed} />
+          <RoomFooter votingSystem={room.votingSystem} isRevealed={isRevealed} />
         </div>
         <IssueContextProvider>
           <Issues isOpen={isOpen} toggleOffCanvas={toggleOffCanvas} />
