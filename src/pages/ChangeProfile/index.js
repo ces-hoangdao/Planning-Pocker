@@ -81,7 +81,7 @@ function ChangeProfile() {
 
   return (
     <div className="change-profile">
-      <DropdownMenu>
+      <DropdownMenu className="border-0 mt-3">
         <DropdownItem className="item" onClick={toggle}>
           <i className="fa fa-user" />
           Change profile

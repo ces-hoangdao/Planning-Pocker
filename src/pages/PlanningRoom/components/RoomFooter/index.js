@@ -24,7 +24,7 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
     <div className="d-flex justify-content-center align-items-center room__footer">
       {isRevealed && voteResult ? (
         <div className="d-flex justify-content-center result-section">
-          <div className="d-flex flex-column justify-content-evenly align-items-center mx-3 result-average-container">
+          <div className="d-flex flex-column justify-content-evenly align-items-center mx-3 gap-2 result-average-container">
             <span className="average-label">Average</span>
             <div className="result-card">
               {voteResult.results === "coffee" ? (

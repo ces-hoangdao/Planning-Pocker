@@ -37,6 +37,9 @@
     "react/jsx-no-constructed-context-values": "off",
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
-    "react/self-closing-comp": "off"
+    "react/self-closing-comp": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
+    "consistent-return": "off"
   }
 }

@@ -46,7 +46,7 @@
 
 .form-control.is-invalid,
 .was-validated .form-control:invalid {
-  --bs-form-invalid-border-color: #ccc;
+  --bs-form-invalid-border-color: var(--form-border-color);
   border-color: --bs-form-invalid-border-color;
 }
 
