@@ -46,7 +46,7 @@
 
 .form-control.is-invalid,
 .was-validated .form-control:invalid {
-  border-color: #ccc;
+  border-color: var(--form-border-color);
 }
 
 .form-control:focus {
@@ -104,7 +104,7 @@
 
 .line {
   height: 1px;
-  background-color: #a8aeb2;
+  background-color: var(--card-background);
   width: 50%;
 }
 

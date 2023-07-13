@@ -82,7 +82,7 @@ function RoomHeader(props) {
             {gameName}
             <i className="fas fa-chevron-down" />
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu className="border-0 mt-3">
             <DropdownItem
               className="d-flex justify-content-between align-items-center item-game-name"
               header

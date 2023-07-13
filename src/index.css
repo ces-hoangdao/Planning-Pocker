@@ -2,9 +2,14 @@
   --primary-color: #3993ff;
   --secondary-color: #74b3ff;
   --background-color: #ebf4ff;
+  --btn-background-color-hover: #c4dfff;
+  --dropdown-background-color: #f2f2f2;
+  --dropdown-icon-color: #a0a0a0;
   --table-background: #d7e9ff;
   --card-background: #e8e9ea;
   --text-color: #1a2935;
+  --label-color: #a8aeb2;
+  --form-border-color: #ccc;
   --success-color: #07bc0c;
   --error-color: #e74c3c;
   --font-size-extra-large: 3.5rem;

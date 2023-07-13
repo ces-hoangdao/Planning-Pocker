@@ -1,5 +1,9 @@
+.room__footer {
+  height: 18rem;
+}
+
 .card-list-section {
-  height: 10rem;
+  height: 8rem;
   text-align: center;
 }
 
@@ -29,7 +33,7 @@
 .btn.btn-outline-primary.card-button {
   width: 3.8rem;
   height: 6.5rem;
-  background-color: #fff;
+  background-color: white;
   border: 1.5px solid var(--primary-color);
   color: var(--primary-color);
   font-size: var(--font-size-small);
@@ -39,7 +43,7 @@
 }
 
 .btn.btn-outline-primary.card-button:hover {
-  background-color: #ebf4ff;
+  background-color: var(--background-color);
   transform: translateY(-0.3rem);
 }
 
@@ -48,7 +52,7 @@
   height: 6.5rem;
   background-color: var(--primary-color);
   border: 1.5px solid var(--primary-color);
-  color: #fff;
+  color: white;
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-large);
   border-radius: 0.8rem;
@@ -56,16 +60,16 @@
 }
 
 .result-average-container {
-  height: 17rem;
+  height: 10rem;
 }
 
 .average-label {
   font-size: var(--font-size-medium);
-  color: #a8aeb2;
+  color: var(--label-color);
 }
 
 .result-card {
-  width: 6rem;
+  width: 5.5rem;
   height: 9rem;
   border: 2px solid black;
   border-radius: 0.6rem;
@@ -73,7 +77,6 @@
   padding: 2.5rem 0;
   font-size: var(--font-size-large);
   font-weight: var(--font-weight-medium);
-  margin: 1rem 0;
 }
 
 .vote-count {

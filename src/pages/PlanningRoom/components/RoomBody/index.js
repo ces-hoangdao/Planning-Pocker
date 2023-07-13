@@ -7,6 +7,7 @@ import { UserContext } from "../../../../context/userContext"
 import { SocketContext } from "../../../../context/SocketContext"
 import { RoomContext } from "../../../../context/roomContext"
 import SOCKET_EVENT from "../../../../constants/socket_event"
+import SetTimer from "./components/SetTimer"
 
 const THIRD_USER_INDEX = 2
 const FORTH_USER_INDEX = 3
@@ -84,8 +85,11 @@ function RoomBody({ isRevealed }) {
   }
 
   return (
-    <div className="room-body d-flex justify-content-center">
-      <div className="table-module-wrapper vw-100 d-flex align-items-center justify-content-center">
+    <div className="room-body d-flex flex-column justify-content-between">
+      <div className="timer-module">
+        <SetTimer />
+      </div>
+      <div className="table-module-wrapper d-flex align-items-center justify-content-center">
         <div className="table-module-container d-inline-grid">
           <div className="table-module-top d-flex align-items-center justify-content-center">
             {topUserList.map((_user) => (
