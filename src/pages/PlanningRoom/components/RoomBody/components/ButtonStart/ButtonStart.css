@@ -1,13 +1,14 @@
 .btn-start {
-    background-color: #48545d;
-    border: 0 solid var(--secondary-color);
-    border-radius: 1rem;
-    color: white;
-    height: 5rem;
-    padding: 1rem 2rem;
-    font-weight: var(--font-weight-medium);
+  z-index: calc(var(--firework-z-index) + 1);
+  background-color: #48545d;
+  border: 0 solid var(--secondary-color);
+  border-radius: 1rem;
+  color: white;
+  height: 5rem;
+  padding: 1rem 2rem;
+  font-weight: var(--font-weight-medium);
 }
 
 .btn-start:hover {
-    background-color: black;
+  background-color: black;
 }

@@ -21,6 +21,7 @@
   --player-card-height: 7.5rem;
 
   --offcanvas-width: 30rem;
+  --firework-z-index: 0;
 }
 
 * {
