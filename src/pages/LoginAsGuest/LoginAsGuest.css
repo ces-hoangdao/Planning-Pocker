@@ -1,58 +1,58 @@
 .modal-guest .modal-title {
-    font-size: var(--font-size-modal-title);
-    font-weight: var(--font-weight-large);
+  font-size: var(--font-size-modal-title);
+  font-weight: var(--font-weight-large);
 }
 
 .form-login-as-guest {
-    margin: 3rem 0;
+  margin: 3rem 0;
 }
 
 .input-guest-name {
-    display: inline-block;
-    width: 100%;
-    height: 4rem;
-    padding: 0px 16px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    color: var(--text-color);
-    font-size: var(--font-size-medium);
+  display: inline-block;
+  width: 100%;
+  height: 4rem;
+  padding: 0px 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  color: var(--text-color);
+  font-size: var(--font-size-medium);
 }
 
 .input-guest-name:focus {
-    outline: none;
-    border: 2px solid rgba(57, 146, 255, 0.75);
+  outline: none;
+  border: 2px solid rgba(57, 146, 255, 0.75);
 }
 
 .error-message {
-    color: #ed2b2b;
-    text-align: left;
-    margin: 1rem 0 0 0.5rem;
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-small);
+  color: #ed2b2b;
+  text-align: left;
+  margin: 1rem 0 0 0.5rem;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-small);
 }
 
 .btn.btn-continue {
-    margin-top: 3.2rem;
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-medium);
-    border: 0;
+  margin-top: 3.2rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-medium);
+  border: 0;
 }
 
 .btn.btn-continue:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .btn.btn-outline-primary.option {
-    color: var(--primary-color);
-    padding: 0.7rem;
-    font-size: var(--font-size-medium);
-    font-weight: var(--font-weight-medium);
-    border: 0;
+  color: var(--primary-color);
+  padding: 0.7rem;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  border: 0;
 }
 
 .btn.btn-outline-primary.option:hover {
-    background-color: transparent;
-    font-weight: var(--font-weight-large);
+  background-color: transparent;
+  font-weight: var(--font-weight-large);
 }

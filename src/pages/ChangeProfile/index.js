@@ -18,12 +18,15 @@ import { ROUTES } from "../../constants/routes"
 import { updateUserProfile } from "../../api/services/userService"
 import { UserContext } from "../../context/userContext"
 import { SocketContext } from "../../context/SocketContext"
+import { RoomContext } from "../../context/roomContext"
 import defaultUserPhoto from "../../assets/user_photo.png"
 import SOCKET_EVENT from "../../constants/socket_event"
 import "./ChangeProfile.css"
+import SpecMode from "../SpecMode"
 
 function ChangeProfile() {
   const { user, setUser } = useContext(UserContext)
+  const roomContext = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
 
   const [displayName, setDisplayName] = useState("")
@@ -84,6 +87,14 @@ function ChangeProfile() {
           Change profile
         </DropdownItem>
         <DropdownItem divider />
+        {roomContext && (
+          <>
+            <DropdownItem className="item">
+              <SpecMode />
+            </DropdownItem>
+            <DropdownItem divider />
+          </>
+        )}
         <DropdownItem className="item" onClick={handleSignOut}>
           <i className="fa fa-sign-out" />
           Sign out

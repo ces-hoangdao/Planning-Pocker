@@ -11,7 +11,7 @@ import SOCKET_EVENT from "../../../../constants/socket_event"
 const THIRD_USER_INDEX = 2
 const FORTH_USER_INDEX = 3
 
-function RoomBody({ isRevealed }) {
+function RoomBody({ isRevealed, specMode }) {
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserContext)
   const { users, setUsers } = useContext(RoomContext)
@@ -86,6 +86,7 @@ function RoomBody({ isRevealed }) {
                 key={_user.userId}
                 isMainPlayer={user._id === _user.userId}
                 isRevealed={isRevealed}
+                specMode={specMode}
               />
             ))}
           </div>
@@ -95,6 +96,7 @@ function RoomBody({ isRevealed }) {
                 userVoting={users[THIRD_USER_INDEX]}
                 isMainPlayer={user._id === users[THIRD_USER_INDEX].userId}
                 isRevealed={isRevealed}
+                specMode={specMode}
               />
             )}
           </div>
@@ -104,6 +106,7 @@ function RoomBody({ isRevealed }) {
                 userVoting={users[FORTH_USER_INDEX]}
                 isMainPlayer={user._id === users[FORTH_USER_INDEX].userId}
                 isRevealed={isRevealed}
+                specMode={specMode}
               />
             )}
           </div>
@@ -114,6 +117,7 @@ function RoomBody({ isRevealed }) {
                 key={_user.userId}
                 isMainPlayer={user._id === _user.userId}
                 isRevealed={isRevealed}
+                specMode={specMode}
               />
             ))}
           </div>

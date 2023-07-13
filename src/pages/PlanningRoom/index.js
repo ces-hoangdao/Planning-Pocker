@@ -21,6 +21,7 @@ function PlanningRoom() {
   const [isOpen, setIsOpen] = useState(false)
   const [isRevealed, setIsRevealed] = useState(false)
   const [voteResult, setVoteResult] = useState(null)
+  const [specMode, setSpecMode] = useState(false)
 
   const { id } = useParams()
 
@@ -35,6 +36,9 @@ function PlanningRoom() {
     })
     socket.on(SOCKET_EVENT.ROOM.START, () => {
       setIsRevealed(false)
+    })
+    socket.on(SOCKET_EVENT.USER.SPECTATOR_MODE, (data) => {
+      setSpecMode(data.specMode)
     })
   }, [])
 
@@ -78,11 +82,12 @@ function PlanningRoom() {
             gameName={room.name || "Planning poker game"}
             toggleOffCanvas={toggleOffCanvas}
           />
-          <RoomBody isRevealed={isRevealed} />
+          <RoomBody isRevealed={isRevealed} specMode={specMode} />
           <RoomFooter
             votingSystem={room.votingSystem}
             isRevealed={isRevealed}
             voteResult={voteResult}
+            specMode={specMode}
           />
         </div>
         <IssueContextProvider>
