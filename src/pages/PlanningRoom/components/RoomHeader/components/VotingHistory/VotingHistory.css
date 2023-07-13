@@ -10,3 +10,7 @@
   border-collapse: separate;
   border-spacing: 0 1em;
 }
+
+.history-table-body tr {
+  font-size: small;
+}

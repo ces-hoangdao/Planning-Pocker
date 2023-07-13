@@ -4,5 +4,6 @@
 }
 
 .offcanvas.canvas-issue {
+  z-index: calc(1 + var(--firework-z-index));
   --bs-offcanvas-width: var(--offcanvas-width);
 }

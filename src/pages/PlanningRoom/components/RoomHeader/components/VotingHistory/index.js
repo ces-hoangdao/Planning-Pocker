@@ -38,7 +38,7 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
               <th>Player results</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="history-table-body">
             {history.map((vote) => {
               const date = new Date(vote.date)
               const showDate = date.toLocaleString("en-US", {
