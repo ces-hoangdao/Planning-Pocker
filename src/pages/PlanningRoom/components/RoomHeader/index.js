@@ -14,6 +14,7 @@ import ChangeProfile from "../../../ChangeProfile"
 import { UserContext } from "../../../../context/userContext"
 import { RoomContext } from "../../../../context/roomContext"
 import { SocketContext } from "../../../../context/SocketContext"
+import { ROOM_DEFAULT_NAME } from "../../../../constants/roomConst"
 import { ROUTES } from "../../../../constants/routes"
 import SOCKET_EVENT from "../../../../constants/socket_event"
 import defaultUserPhoto from "../../../../assets/user_photo.png"
@@ -57,7 +58,7 @@ function RoomHeader(props) {
 
   useEffect(() => {
     if (room) {
-      setRoomName(room.name || "Planning poker game")
+      setRoomName(room.name || ROOM_DEFAULT_NAME)
     }
   }, [room])
 
