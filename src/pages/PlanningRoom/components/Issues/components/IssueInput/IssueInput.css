@@ -1,5 +1,5 @@
 .form-control.issue-input {
-  background-color: #e5e5e5;
+  background-color: var(--issue-input-bg-color);
   height: 10rem;
   resize: none;
 }
@@ -17,7 +17,7 @@
 .btn-cancel {
   background-color: white;
   color: var(--primary-color);
-  border: 1.5px solid #f2f2f2;
+  border: 1.5px solid var(--issue-input-bg-color);
   border-radius: 0.5rem;
   height: 3rem;
   font-size: var(--font-size-small);
