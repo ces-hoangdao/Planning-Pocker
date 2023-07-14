@@ -9,6 +9,7 @@ import { getRoomById } from "../../api/services/roomService"
 import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
 import { SocketContext } from "../../context/SocketContext"
+import { ROOM_DEFAULT_NAME, ROOM_STATUS } from "../../constants/roomConst"
 import SOCKET_EVENT from "../../constants/socket_event"
 import IssueContextProvider from "../../context/issueContext"
 import Issues from "./components/Issues"
@@ -69,7 +70,7 @@ function PlanningRoom() {
   }, [id])
 
   useEffect(() => {
-    if (room) setIsRevealed(room.status === "concluded")
+    if (room) setIsRevealed(room.status === ROOM_STATUS.CONCLUDED)
   }, [room])
 
   useEffect(() => {
@@ -98,7 +99,7 @@ function PlanningRoom() {
           className={`room__container vh-100 d-flex flex-column justify-content-between ${widthClassName}`}
         >
           <RoomHeader
-            gameName={room.name || "Planning poker game"}
+            gameName={room.name || ROOM_DEFAULT_NAME}
             toggleOffCanvas={toggleOffCanvas}
           />
           <RoomBody isRevealed={isRevealed} />
