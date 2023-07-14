@@ -17,7 +17,7 @@
 .btn-cancel {
   background-color: white;
   color: var(--primary-color);
-  border: 1.5px solid #f2f2f2;
+  border: 1.5px solid var(--dropdown-background-color);
   border-radius: 0.5rem;
   height: 3rem;
   font-size: var(--font-size-small);

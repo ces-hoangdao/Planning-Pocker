@@ -10,4 +10,3 @@
 .room__container--offcanvas {
   width: calc(100% - var(--offcanvas-width));
 }
-

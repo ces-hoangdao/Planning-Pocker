@@ -6,7 +6,7 @@
 .btn.btn-vote {
   color: var(--primary-color);
   font-weight: var(--font-weight-medium);
-  border: 1.5px solid #f2f2f2;
+  border: 1.5px solid var(--dropdown-background-color);
   font-size: var(--font-size-small);
 }
 
@@ -48,7 +48,7 @@
 }
 
 .menu-option:hover {
-  background-color: #ebf4ff;
+  background-color: var(--background-color);
 }
 
 .menu-option:focus {
