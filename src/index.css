@@ -1,17 +1,14 @@
 :root {
-  --primary-color: #3993ff;
-  --secondary-color: #74b3ff;
+  --backdrop-bg-color: rgb(26, 41, 53);
   --background-color: #ebf4ff;
   --btn-background-color-hover: #c4dfff;
+  --btn-vote-border-color: #f2f2f2;
+  --btn-start-background-color: #48545d;
+  --card-background: #e8e9ea;
   --dropdown-background-color: #f2f2f2;
   --dropdown-icon-color: #a0a0a0;
-  --table-background: #d7e9ff;
-  --card-background: #e8e9ea;
-  --text-color: #1a2935;
-  --label-color: #a8aeb2;
-  --form-border-color: #ccc;
-  --success-color: #07bc0c;
   --error-color: #e74c3c;
+  --firework-z-index: 0;
   --font-size-extra-large: 3.5rem;
   --font-size-large: 2rem;
   --font-size-medium: 1.6rem;
@@ -21,17 +18,22 @@
   --font-weight-large: 700;
   --font-weight-medium: 600;
   --font-weight-small: 500;
+  --form-border-color: #ccc;
+  --input-guest-name-focus: rgba(57, 146, 255, 0.75);
+  --issue-edit-bg-color: #e5e5e5;
+  --issue-input-bg-color: #e5e5e5;
+  --label-color: #a8aeb2;
+  --menu-option-hover-bg-color: #ebf4ff;
+  --menu-option-focus-bg-color: rgb(183, 183, 252);
   --player-card-width: 4.8rem;
   --player-card-height: 7.5rem;
   --offcanvas-width: 30rem;
-  --firework-z-index: 0;
-  --spec-color: #a8aeb2;
-  /* Issue */
-  --menu-option-hover-bg-color: #ebf4ff;
-  --menu-option-focus-bg-color: rgb(183, 183, 252);
-  --issue-edit-bg-color: #e5e5e5;
-  --btn-vote-border-color: #f2f2f2;
-  --issue-input-bg-color: #e5e5e5;
+  --primary-color: #3993ff;
+  --room-background-color: #f9f9f9;
+  --secondary-color: #74b3ff;
+  --success-color: #07bc0c;
+  --table-background: #d7e9ff;
+  --text-color: #1a2935;
 }
 
 * {

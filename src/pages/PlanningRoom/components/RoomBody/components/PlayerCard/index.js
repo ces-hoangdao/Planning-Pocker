@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import nameLength from "../../../../../../utils/NameLength"
 
 function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
   const [user, setUser] = useState(null)
@@ -34,8 +35,8 @@ function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
           </div>
         )}
 
-        <div className="player-name-container">
-          {user.username} {isMainPlayer ? " (You)" : ""}
+        <div className="player-name-container" title={user.username}>
+          {nameLength(user.username)} {isMainPlayer ? " (You)" : ""}
         </div>
       </div>
     )

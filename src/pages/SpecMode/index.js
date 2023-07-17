@@ -15,12 +15,13 @@ function SpecMode() {
   }
 
   return (
-    <div className="spec-mode d-flex">
+    <div className="spec-mode d-flex align-items-center">
       {specMode ? (
-        <i className="fa fa-eye-slash spec-icon ms-3 mt-1"></i>
+        <i className="fa fa-eye-slash spec-icon ms-3"></i>
       ) : (
-        <i className="fa fa-eye spec-icon ms-3 mt-1"></i>
+        <i className="fa fa-eye spec-icon ms-3"></i>
       )}
+      <span className="spec-mode-label ms-2">Spectator Mode</span>
       <Form className="switch-container d-flex">
         <FormGroup switch>
           <Input
@@ -31,7 +32,6 @@ function SpecMode() {
           />
         </FormGroup>
       </Form>
-      <span className="spec-mode-label">Spectator Mode</span>
     </div>
   )
 }

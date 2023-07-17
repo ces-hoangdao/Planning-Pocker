@@ -40,7 +40,7 @@
 }
 
 .modal-backdrop.show {
-  --bs-backdrop-bg: rgb(26, 41, 53);
+  --bs-backdrop-bg: var(--backdrop-bg-color);
   --bs-backdrop-opacity: 0.8;
 }
 
@@ -104,7 +104,7 @@
 
 .line {
   height: 1px;
-  background-color: var(--card-background);
+  background-color: var(--label-color);
   width: 50%;
 }
 

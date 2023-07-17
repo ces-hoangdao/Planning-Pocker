@@ -1,6 +1,7 @@
 .spec-mode {
   font-size: var(--font-size-small);
   width: 18rem;
+  height: 3.5rem;
 }
 
 .form-switch {

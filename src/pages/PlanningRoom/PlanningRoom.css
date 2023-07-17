@@ -1,5 +1,5 @@
 .room {
-  background-color: #f9f9f9;
+  background-color: var(--room-background-color);
 }
 
 .room__container {

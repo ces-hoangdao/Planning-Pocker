@@ -14,7 +14,7 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./SignUp.css"
 import validateEmail from "../../utils/ValidateUtils"
-import PASS_LIMIT from "../../constants/authConst"
+import { PASS_LIMIT } from "../../constants/authConst"
 import { signUp } from "../../api/services/authService"
 import Login from "../Login"
 
