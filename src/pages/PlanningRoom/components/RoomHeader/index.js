@@ -21,6 +21,7 @@ import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
 import "./RoomHeader.css"
 import VotingHistory from "./components/VotingHistory"
+import nameLength from "../../../../utils/NameLength"
 
 function RoomHeader(props) {
   const { gameName, toggleOffCanvas } = props
@@ -137,7 +138,7 @@ function RoomHeader(props) {
                 className="btn-dropdown btn-user-dropdown"
               >
                 <img src={user.photoURL || defaultUserPhoto} alt="" />
-                {user.name}
+                {nameLength(user.name)}
                 <i className="fas fa-chevron-down" />
               </DropdownToggle>
               <ChangeProfile />

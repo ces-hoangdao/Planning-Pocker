@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { UncontrolledDropdown, DropdownToggle, Button, Container } from "reactstrap"
 import { Link } from "react-router-dom"
+import nameLength from "../../utils/NameLength"
 import SignUp from "../SignUp"
 import Login from "../Login"
 import logo from "../../assets/logo.png"
@@ -29,7 +30,7 @@ function Home() {
                 className="btn-dropdown btn-user-dropdown"
               >
                 <img src={user.photoURL || defaultUserPhoto} alt="" />
-                {user.name}
+                {nameLength(user.name)}
                 <i className="fas fa-chevron-down" />
               </DropdownToggle>
               <ChangeProfile />
