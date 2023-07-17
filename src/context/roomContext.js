@@ -9,6 +9,7 @@ function RoomContextProvider({ children }) {
   const [room, setRoom] = useState(null)
   const [users, setUsers] = useState([])
   const [selectedIssue, setSelectedIssue] = useState(null)
+  const [specMode, setSpecMode] = useState(false)
 
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserContext)
@@ -30,9 +31,11 @@ function RoomContextProvider({ children }) {
       value={{
         room,
         users,
+        specMode,
         selectedIssue,
         setRoom,
         setUsers,
+        setSpecMode,
         setSelectedIssue,
       }}
     >

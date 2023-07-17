@@ -63,6 +63,14 @@ function RoomBody({ isRevealed }) {
         })
       )
     })
+    socket.on(SOCKET_EVENT.USER.SPECTATOR_MODE, ({ userId, specMode }) => {
+      setUsers((current) =>
+        current.map((_user) => {
+          if (_user.userId === userId) return { ..._user, specMode }
+          return _user
+        })
+      )
+    })
     socket.on(SOCKET_EVENT.ROOM.START, clearUserVoting)
   }, [])
 

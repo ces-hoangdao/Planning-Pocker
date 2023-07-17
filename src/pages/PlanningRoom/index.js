@@ -10,6 +10,7 @@ import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
 import { SocketContext } from "../../context/SocketContext"
 import { ROOM_DEFAULT_NAME, ROOM_STATUS } from "../../constants/roomConst"
+import { UserContext } from "../../context/userContext"
 import SOCKET_EVENT from "../../constants/socket_event"
 import IssueContextProvider from "../../context/issueContext"
 import Issues from "./components/Issues"
@@ -21,14 +22,16 @@ const FIREWORK_Z_INDEX_OFF = -1
 function PlanningRoom() {
   const { room, setRoom, setUsers } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
+  const { user } = useContext(UserContext)
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isRevealed, setIsRevealed] = useState(false)
   const [voteResult, setVoteResult] = useState(null)
-  const [fireworkIndex, setFireWorkIndex] = useState(FIREWORK_Z_INDEX_OFF)
 
   const fireworkRef = useRef()
+  const [specMode, setSpecMode] = useState(false)
+  const [fireworkIndex, setFireWorkIndex] = useState(FIREWORK_Z_INDEX_OFF)
 
   const { id } = useParams()
 
@@ -45,6 +48,24 @@ function PlanningRoom() {
       setIsRevealed(false)
     })
   }, [])
+
+  useEffect(() => {
+    if (user._id)
+      socket.on(SOCKET_EVENT.USER.SPECTATOR_MODE, (data) => {
+        if (data.userId === user._id) {
+          setSpecMode(data.specMode)
+        }
+      })
+  }, [user])
+
+  useEffect(() => {
+    checkUserLoggedIn()
+    getGameName()
+  }, [id])
+
+  useEffect(() => {
+    if (room) setIsRevealed(room.status === ROOM_STATUS.CONCLUDED)
+  }, [room])
 
   const getGameName = async () => {
     const res = await getRoomById(id)
@@ -77,18 +98,21 @@ function PlanningRoom() {
     if (!fireworkRef.current) return
 
     if (isRevealed) {
+      // @ts-ignore
       if (!fireworkRef.current.isRunning) {
+        // @ts-ignore
         fireworkRef.current.start()
       }
       setFireWorkIndex(FIREWORK_Z_INDEX_ON)
     } else {
+      // @ts-ignore
       if (fireworkRef.current.isRunning) {
+        // @ts-ignore
         fireworkRef.current.stop()
       }
       setFireWorkIndex(FIREWORK_Z_INDEX_OFF)
     }
   }, [isRevealed])
-
   const widthClassName = isOpen ? "room__container--offcanvas" : "w-100"
 
   return (
@@ -107,6 +131,7 @@ function PlanningRoom() {
             votingSystem={room.votingSystem}
             isRevealed={isRevealed}
             voteResult={voteResult}
+            specMode={specMode}
           />
         </div>
         <IssueContextProvider>

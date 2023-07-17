@@ -13,23 +13,29 @@ function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
         className="player-card-wrapper d-flex flex-column align-items-center justify-content-center"
         key={user.id}
       >
-        <div
-          className={`player-card-empty
+        {!user.specMode ? (
+          <div
+            className={`player-card-empty
           ${
             user.vote && (isRevealed ? "player-card-revealed" : "player-card-voting")
           }
           d-flex align-items-center justify-content-center h3`}
-        >
-          {isRevealed &&
-            (user.vote === "coffee" ? (
-              <i className="fa fa-coffee" />
-            ) : (
-              <span>{user.vote}</span>
-            ))}
-        </div>
+          >
+            {isRevealed &&
+              (user.vote === "coffee" ? (
+                <i className="fa fa-coffee" />
+              ) : (
+                <span>{user.vote}</span>
+              ))}
+          </div>
+        ) : (
+          <div className="player-card-spec d-flex flex-column justify-content-center align-items-center">
+            <i className="fa fa-eye"></i>
+          </div>
+        )}
 
         <div className="player-name-container">
-          {user.username} {isMainPlayer ? " (You)" : ""}{" "}
+          {user.username} {isMainPlayer ? " (You)" : ""}
         </div>
       </div>
     )
