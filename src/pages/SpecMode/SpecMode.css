@@ -1,0 +1,8 @@
+.spec-mode {
+  font-size: var(--font-size-small);
+  width: 18rem;
+}
+
+.form-switch {
+  margin-left: 1rem;
+}

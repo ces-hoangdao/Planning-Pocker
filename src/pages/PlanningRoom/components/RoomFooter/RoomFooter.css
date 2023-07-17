@@ -87,3 +87,7 @@
 .coffee-time i {
   font-size: var(--font-size-modal-title);
 }
+
+.room__footer {
+  height: 17rem;
+}

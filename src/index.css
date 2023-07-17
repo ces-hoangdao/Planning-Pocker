@@ -16,13 +16,11 @@
   --font-weight-large: 700;
   --font-weight-medium: 600;
   --font-weight-small: 500;
-
   --player-card-width: 4.8rem;
   --player-card-height: 7.5rem;
-
   --offcanvas-width: 30rem;
   --firework-z-index: 0;
-
+  --spec-color: #a8aeb2;
   /* Issue */
   --menu-option-hover-bg-color: #ebf4ff;
   --menu-option-focus-bg-color: rgb(183, 183, 252);

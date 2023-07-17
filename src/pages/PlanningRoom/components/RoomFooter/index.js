@@ -5,7 +5,7 @@ import SOCKET_EVENT from "../../../../constants/socket_event"
 import { SocketContext } from "../../../../context/SocketContext"
 import "./RoomFooter.css"
 
-function RoomFooter({ votingSystem, isRevealed, voteResult }) {
+function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
   const { socket } = useContext(SocketContext)
   const [pickedCard, setPickedCard] = useState()
   const handlePickCard = (card) => {
@@ -46,34 +46,36 @@ function RoomFooter({ votingSystem, isRevealed, voteResult }) {
           )}
         </div>
       ) : (
-        <div className="d-flex flex-column gap-4 card-list-section">
-          <div className="choose-your-card">
-            <span>Choose your card below</span>
-            <img src={iconHandDown} alt="" className="icon-hand-down" />
+        !specMode && (
+          <div className="d-flex flex-column gap-4 card-list-section">
+            <div className="choose-your-card">
+              <span>Choose your card below</span>
+              <img src={iconHandDown} alt="" className="icon-hand-down" />
+            </div>
+            <div className="card-lists-container">
+              <ul className="d-flex justify-content-evenly align-items-center card-lists">
+                {votingSystem.map((card) => (
+                  <li className="card-item" key={card}>
+                    <Button
+                      color="primary"
+                      outline
+                      className={
+                        pickedCard === card ? "card-button--picked" : "card-button"
+                      }
+                      onClick={() => handlePickCard(card)}
+                    >
+                      {card === "coffee" ? (
+                        <i className="fa fa-coffee" />
+                      ) : (
+                        <span>{card}</span>
+                      )}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="card-lists-container">
-            <ul className="d-flex justify-content-evenly align-items-center card-lists">
-              {votingSystem.map((card) => (
-                <li className="card-item" key={card}>
-                  <Button
-                    color="primary"
-                    outline
-                    className={
-                      pickedCard === card ? "card-button--picked" : "card-button"
-                    }
-                    onClick={() => handlePickCard(card)}
-                  >
-                    {card === "coffee" ? (
-                      <i className="fa fa-coffee" />
-                    ) : (
-                      <span>{card}</span>
-                    )}
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        )
       )}
     </div>
   )
