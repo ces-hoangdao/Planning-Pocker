@@ -1,6 +1,7 @@
 export default {
   CONNECTION: "connection",
   DISCONNECTION: "disconnect",
+  ALL: "*",
 
   USER: {
     JOIN: "user:join",
