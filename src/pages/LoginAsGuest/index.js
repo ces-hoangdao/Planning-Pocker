@@ -1,29 +1,36 @@
 import React, { useState, useContext } from "react"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 import { UserContext } from "../../context/userContext"
-import Login from "../Login"
-import SignUp from "../SignUp"
 import { guestLogin } from "../../api/services/authService"
+import { USER_NAME_LIMIT } from "../../constants/authConst"
+import {
+  USERNAME_LENGTH_EXCEEDS_ERROR,
+  USERNAME_FIELD_EMPTY_ERROR,
+} from "../../constants/errorMessage"
 import "./LoginAsGuest.css"
+import ModalComponent from "../ModalComponent"
 
 function LoginAsGuest({ isLoggedIn }) {
   const [showModal, setShowModal] = useState(!isLoggedIn)
   const [guestName, setGuestName] = useState("")
-  const [showError, setShowError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const { setUser } = useContext(UserContext)
-
+  const { user, setUser } = useContext(UserContext)
   const toggle = () => setShowModal(!showModal)
 
   const handleInputChange = (event) => {
     setGuestName(event.target.value)
-    setShowError(false)
+    setErrorMessage(
+      event.target.value.length >= USER_NAME_LIMIT
+        ? USERNAME_LENGTH_EXCEEDS_ERROR
+        : ""
+    )
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (guestName.trim() === "") {
-      setShowError(true)
+      setErrorMessage(USERNAME_FIELD_EMPTY_ERROR)
     } else {
       const res = await guestLogin(guestName)
       if (res.success) {
@@ -36,8 +43,8 @@ function LoginAsGuest({ isLoggedIn }) {
 
   return (
     <div className="login-as-guest">
-      <Modal isOpen={showModal} centered className="modal-guest">
-        <ModalHeader>Choose your display name</ModalHeader>
+      <Modal isOpen={showModal && !user._id} centered className="modal-guest">
+        <ModalHeader className="border-0">Choose your display name</ModalHeader>
         <ModalBody>
           <form className="form-login-as-guest" onSubmit={handleSubmit}>
             <input
@@ -45,12 +52,13 @@ function LoginAsGuest({ isLoggedIn }) {
               required
               className="input-guest-name"
               placeholder="Your display name"
+              maxLength={USER_NAME_LIMIT}
               value={guestName}
               onChange={handleInputChange}
             />
-            {showError && (
+            {errorMessage && (
               <div className="error-message">
-                <i className="fa fa-warning" /> Please enter a display name
+                <i className="fa fa-warning" /> {errorMessage}
               </div>
             )}
             <Button
@@ -64,9 +72,8 @@ function LoginAsGuest({ isLoggedIn }) {
             </Button>
           </form>
         </ModalBody>
-        <ModalFooter className="d-flex justify-content-between align-items-center">
-          <Login />
-          <SignUp />
+        <ModalFooter className="border-0 w-100">
+          <ModalComponent modalName="login" isLoggedIn={isLoggedIn} />
         </ModalFooter>
       </Modal>
     </div>

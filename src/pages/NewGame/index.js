@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Form, FormGroup, Input, Label, Button } from "reactstrap"
 import { createRoom } from "../../api/services/roomService"
+import { ROUTES } from "../../constants/routes"
 import logo from "../../assets/logo.png"
 import "./NewGame.css"
 
@@ -18,7 +19,7 @@ function NewGame() {
     const res = await createRoom(roomName.trim())
     if (res.success) {
       const roomId = res.data._id
-      navigate(`/room/${roomId}`)
+      navigate(`${ROUTES.ROOM}/${roomId}`)
     }
   }
 

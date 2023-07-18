@@ -21,6 +21,8 @@ import { SocketContext } from "../../context/SocketContext"
 import { RoomContext } from "../../context/roomContext"
 import defaultUserPhoto from "../../assets/user_photo.png"
 import SOCKET_EVENT from "../../constants/socket_event"
+import { USER_NAME_LIMIT } from "../../constants/authConst"
+import { USERNAME_LENGTH_EXCEEDS_ERROR } from "../../constants/errorMessage"
 import "./ChangeProfile.css"
 import SpecMode from "../SpecMode"
 
@@ -29,6 +31,7 @@ function ChangeProfile() {
   const roomContext = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
 
+  const [errorMessage, setErrorMessage] = useState("")
   const [displayName, setDisplayName] = useState("")
   const [photo, setPhoto] = useState("")
   const [modal, setModal] = useState(false)
@@ -38,6 +41,11 @@ function ChangeProfile() {
 
   const handleInputChange = (event) => {
     setDisplayName(event.target.value)
+    setErrorMessage(
+      event.target.value.length >= USER_NAME_LIMIT
+        ? USERNAME_LENGTH_EXCEEDS_ERROR
+        : ""
+    )
   }
 
   const handleAvatarChange = (event) => {
@@ -104,7 +112,7 @@ function ChangeProfile() {
         centered
         className="modal-change-profile"
       >
-        <ModalHeader toggle={toggle} className="modal-title">
+        <ModalHeader toggle={toggle} className="modal-title border-0">
           Change your information
         </ModalHeader>
         <ModalBody>
@@ -132,13 +140,19 @@ function ChangeProfile() {
                 name="input-display-name"
                 value={displayName}
                 type="text"
+                maxLength={USER_NAME_LIMIT}
                 className="input-display-name"
                 onChange={handleInputChange}
               />
+              {errorMessage && (
+                <div className="error-message">
+                  <i className="fa fa-warning" /> {errorMessage}
+                </div>
+              )}
             </FormGroup>
           </Form>
         </ModalBody>
-        <ModalFooter className="change-profile-footer">
+        <ModalFooter className="border-0">
           <Button block color="primary" className="btn-save" onClick={handleSave}>
             Save
           </Button>

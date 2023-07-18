@@ -56,3 +56,10 @@
   background-color: transparent;
   font-weight: var(--font-weight-large);
 }
+
+.modal-guest .modal-footer .btn-auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

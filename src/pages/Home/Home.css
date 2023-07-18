@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+.home .btn-auth-options .btn-auth {
+  margin: 0 1rem;
+}
+
 .home_title_container {
   height: 10rem;
 }

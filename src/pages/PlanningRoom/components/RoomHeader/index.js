@@ -11,6 +11,7 @@ import {
 } from "reactstrap"
 import InvitePlayers from "../../../InvitePlayers"
 import ChangeProfile from "../../../ChangeProfile"
+import VotingHistory from "./components/VotingHistory"
 import { UserContext } from "../../../../context/userContext"
 import { RoomContext } from "../../../../context/roomContext"
 import { SocketContext } from "../../../../context/SocketContext"
@@ -19,8 +20,8 @@ import { ROUTES } from "../../../../constants/routes"
 import SOCKET_EVENT from "../../../../constants/socket_event"
 import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
+import { GAME_NAME_LIMIT } from "../../../../constants/authConst"
 import "./RoomHeader.css"
-import VotingHistory from "./components/VotingHistory"
 
 function RoomHeader(props) {
   const { gameName, toggleOffCanvas } = props
@@ -90,12 +91,13 @@ function RoomHeader(props) {
               <input
                 id="input-edit-game-name"
                 className="input-edit-game-name"
+                size={roomName.length}
                 ref={inputRef}
                 value={roomName}
                 onChange={handleInputGameNameChange}
                 onFocus={handleInputGameNameFocus}
                 onBlur={handleInputGameNameBlur}
-                maxLength={20}
+                maxLength={GAME_NAME_LIMIT}
               />
               {isEditing && (
                 <button
@@ -129,21 +131,19 @@ function RoomHeader(props) {
         </UncontrolledDropdown>
       </div>
       <Nav className="d-flex justify-content-end align-items-center right-side-header">
-        {user && (
-          <NavItem>
-            <UncontrolledDropdown direction="down" className="dropdown-container">
-              <DropdownToggle
-                color="primary"
-                className="btn-dropdown btn-user-dropdown"
-              >
-                <img src={user.photoURL || defaultUserPhoto} alt="" />
-                {user.name}
-                <i className="fas fa-chevron-down" />
-              </DropdownToggle>
-              <ChangeProfile />
-            </UncontrolledDropdown>
-          </NavItem>
-        )}
+        <NavItem>
+          <UncontrolledDropdown direction="down" className="dropdown-container">
+            <DropdownToggle
+              color="primary"
+              className="btn-dropdown btn-user-dropdown"
+            >
+              <img src={user?.photoURL || defaultUserPhoto} alt="" />
+              {user.name}
+              <i className="fas fa-chevron-down" />
+            </DropdownToggle>
+            <ChangeProfile />
+          </UncontrolledDropdown>
+        </NavItem>
         <NavItem>
           <InvitePlayers gameUrl={window.location.href} />
         </NavItem>
