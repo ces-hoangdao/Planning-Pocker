@@ -4,7 +4,6 @@ import Fireworks from "@fireworks-js/react"
 import RoomHeader from "./components/RoomHeader"
 import RoomBody from "./components/RoomBody"
 import RoomFooter from "./components/RoomFooter"
-import LoginAsGuest from "../LoginAsGuest"
 import { getRoomById } from "../../api/services/roomService"
 import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
@@ -14,6 +13,7 @@ import { UserContext } from "../../context/userContext"
 import SOCKET_EVENT from "../../constants/socket_event"
 import IssueContextProvider from "../../context/issueContext"
 import Issues from "./components/Issues"
+import LoginAsGuest from "../LoginAsGuest"
 import "./PlanningRoom.css"
 
 const FIREWORK_Z_INDEX_ON = 0
@@ -28,11 +28,10 @@ function PlanningRoom() {
   const [isOpen, setIsOpen] = useState(false)
   const [isRevealed, setIsRevealed] = useState(false)
   const [voteResult, setVoteResult] = useState(null)
-
-  const fireworkRef = useRef()
   const [specMode, setSpecMode] = useState(false)
   const [fireworkIndex, setFireWorkIndex] = useState(FIREWORK_Z_INDEX_OFF)
 
+  const fireworkRef = useRef()
   const { id } = useParams()
 
   const toggleOffCanvas = () => {
@@ -59,17 +58,13 @@ function PlanningRoom() {
   }, [user])
 
   useEffect(() => {
-    checkUserLoggedIn()
-    getGameName()
-  }, [id])
-
-  useEffect(() => {
     if (room) setIsRevealed(room.status === ROOM_STATUS.CONCLUDED)
   }, [room])
 
   const getGameName = async () => {
     const res = await getRoomById(id)
     const { voting, currentResults, ...roomData } = res.data
+    localStorage.setItem("roomId", res.data._id)
     setRoom(roomData)
     setUsers(voting)
     setVoteResult(currentResults)

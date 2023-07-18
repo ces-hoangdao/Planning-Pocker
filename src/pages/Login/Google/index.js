@@ -21,7 +21,11 @@ function GoogleLogin() {
     toast.success("Login success!")
   }, [])
 
-  return <Navigate to={ROUTES.HOME_PATH} />
+  return localStorage.getItem("roomId") ? (
+    <Navigate to={`${ROUTES.ROOM}/${localStorage.getItem("roomId")}`} />
+  ) : (
+    <Navigate to={ROUTES.HOME_PATH} />
+  )
 }
 
 export default GoogleLogin

@@ -8,6 +8,7 @@ import "./RoomFooter.css"
 function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
   const { socket } = useContext(SocketContext)
   const [pickedCard, setPickedCard] = useState()
+
   const handlePickCard = (card) => {
     const voteValue = card !== pickedCard ? card : ""
     setPickedCard(voteValue)

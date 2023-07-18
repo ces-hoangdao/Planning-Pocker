@@ -9,11 +9,12 @@ export const guestLogin = async (username) => {
 }
 
 export const signUp = async (username, email, password) => {
-  await instance.post(API_ROUTES.SIGNUP, {
+  const res = await instance.post(API_ROUTES.SIGNUP, {
     username,
     email,
     password,
   })
+  return res.data
 }
 
 export const login = async (email, password) => {
