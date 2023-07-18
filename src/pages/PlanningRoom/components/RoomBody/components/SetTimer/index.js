@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { toast } from "react-toastify"
 import {
   UncontrolledDropdown,
@@ -8,6 +8,8 @@ import {
   Button,
   Alert,
 } from "reactstrap"
+import { SocketContext } from "../../../../../../context/SocketContext"
+import SOCKET_EVENT from "../../../../../../constants/socket_event"
 import iconClock from "../../../../../../assets/icon_clock.png"
 // @ts-ignore
 import sound from "../../../../../../assets/sound.mp3"
@@ -15,6 +17,8 @@ import sound from "../../../../../../assets/sound.mp3"
 function SetTimer() {
   const [minutesValue, setMinutesValue] = useState("")
   const [remainingTime, setRemainingTime] = useState(-1)
+
+  const { socket } = useContext(SocketContext)
 
   const handleInputMinutesChange = (event) => {
     setMinutesValue(event.target.value)
@@ -29,13 +33,23 @@ function SetTimer() {
   }
 
   const handleStart = () => {
-    setRemainingTime(parseFloat(minutesValue) * 60)
+    const seconds = parseFloat(minutesValue) * 60
+    if (seconds) {
+      setRemainingTime(seconds)
+      socket.emit(SOCKET_EVENT.ROOM.SET_TIMER, { timeAmount: seconds })
+    }
   }
 
   const playSound = () => {
     const audio = new Audio(sound)
     audio.play()
   }
+
+  useEffect(() => {
+    socket.on(SOCKET_EVENT.ROOM.SET_TIMER, ({ timeAmount }) => {
+      setRemainingTime(timeAmount)
+    })
+  }, [])
 
   useEffect(() => {
     if (remainingTime === 0) {
