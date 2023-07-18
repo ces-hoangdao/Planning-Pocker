@@ -42,8 +42,8 @@ function RoomBody({ isRevealed }) {
   }, [users])
 
   useEffect(() => {
-    socket.on(SOCKET_EVENT.USER.JOIN, (_user) => {
-      setUsers((current) => [...current, _user])
+    socket.on(SOCKET_EVENT.USER.JOIN, (_users) => {
+      setUsers(_users)
     })
     socket.on(SOCKET_EVENT.USER.LEAVE, ({ userId }) => {
       setUsers((current) => current.filter((_user) => _user.userId !== userId))
