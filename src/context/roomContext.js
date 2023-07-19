@@ -26,6 +26,10 @@ function RoomContextProvider({ children }) {
     }
   }, [room, user._id])
 
+  const clearUserVoting = () => {
+    setUsers((current) => current.map((_user) => ({ ..._user, vote: null })))
+  }
+
   return (
     <RoomContext.Provider
       value={{
@@ -37,6 +41,7 @@ function RoomContextProvider({ children }) {
         setUsers,
         setSpecMode,
         setSelectedIssue,
+        clearUserVoting,
       }}
     >
       {children}

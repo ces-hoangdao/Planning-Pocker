@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Offcanvas, OffcanvasBody, Button, OffcanvasHeader } from "reactstrap"
 import IssueInput from "./components/IssueInput"
 import IssueList from "./components/IssueList"
@@ -6,12 +6,38 @@ import { IssueContext } from "../../../../context/issueContext"
 import "./Issue.css"
 import { RoomContext } from "../../../../context/roomContext"
 
-function Issues({ isOpen, toggleOffCanvas }) {
+function Issues({ isOpen, toggleOffCanvas, voteResult }) {
   const [isAddingIssue, setIsAddingIssue] = useState(false)
+  const [issueCount, setIssueCount] = useState(0)
+  const [totalPoint, setTotalPoint] = useState(0)
 
-  const { issueList, deleteIssue, emitSelectedIssue, addIssue, updateIssue } =
-    useContext(IssueContext)
+  const {
+    issueList,
+    deleteIssue,
+    emitSelectedIssue,
+    addIssue,
+    updateIssue,
+    loadIssues,
+  } = useContext(IssueContext)
   const { selectedIssue } = useContext(RoomContext)
+
+  useEffect(() => {
+    setIssueCount(issueList.length)
+    setTotalPoint(
+      issueList.reduce(
+        (total, item) =>
+          Number(total) +
+          (Number.isNaN(Number(item.storyPoints)) ? 0 : Number(item.storyPoints)),
+        0
+      )
+    )
+  }, [issueList])
+
+  useEffect(() => {
+    if (voteResult) {
+      loadIssues()
+    }
+  }, [voteResult])
 
   const closeAddingIssue = () => setIsAddingIssue(false)
 
@@ -23,7 +49,12 @@ function Issues({ isOpen, toggleOffCanvas }) {
       toggle={toggleOffCanvas}
       className="canvas-issue"
     >
-      <OffcanvasHeader toggle={toggleOffCanvas}>Issues</OffcanvasHeader>
+      <OffcanvasHeader toggle={toggleOffCanvas}>
+        <div className="d-flex flex-column">
+          <span>Issues</span>
+          <p className="issues-report">{`${issueCount} issues・${totalPoint} points`}</p>
+        </div>
+      </OffcanvasHeader>
       <OffcanvasBody>
         <IssueList
           issueList={issueList}

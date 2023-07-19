@@ -12,6 +12,8 @@ function IssueInput({ closeAddingIssue, addIssue }) {
     }
   }
 
+  const saveButtonDisabled = newIssueName.trim() === ""
+
   return (
     <Form
       onSubmit={handleAddIssue}
@@ -28,14 +30,15 @@ function IssueInput({ closeAddingIssue, addIssue }) {
         <button
           id="cancel"
           type="button"
-          className="w-50 me-3 btn-cancel"
+          className="w-50 me-3 btn-cancel btn-delete-issue--cancel"
           onClick={closeAddingIssue}
         >
           Cancel
         </button>
         <button
           type="button"
-          className="w-50 ms-3 btn-save"
+          className="w-50 ms-3 btn btn-save--issue"
+          disabled={saveButtonDisabled}
           onClick={handleAddIssue}
         >
           Save

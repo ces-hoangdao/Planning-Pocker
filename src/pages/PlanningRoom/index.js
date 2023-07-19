@@ -20,7 +20,7 @@ const FIREWORK_Z_INDEX_ON = 0
 const FIREWORK_Z_INDEX_OFF = -1
 
 function PlanningRoom() {
-  const { room, setRoom, setUsers } = useContext(RoomContext)
+  const { room, setRoom, setUsers, setSelectedIssue } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserContext)
 
@@ -41,10 +41,11 @@ function PlanningRoom() {
   useEffect(() => {
     socket.on(SOCKET_EVENT.ROOM.REVEAL, (data) => {
       setVoteResult(data)
-      setIsRevealed(true)
+      setRoom((current) => ({ ...current, status: ROOM_STATUS.CONCLUDED }))
     })
-    socket.on(SOCKET_EVENT.ROOM.START, () => {
-      setIsRevealed(false)
+    socket.on(SOCKET_EVENT.ROOM.START, (resetIssue) => {
+      setRoom((current) => ({ ...current, status: ROOM_STATUS.VOTING }))
+      if (resetIssue) setSelectedIssue(null)
     })
   }, [])
 
@@ -98,16 +99,22 @@ function PlanningRoom() {
         // @ts-ignore
         fireworkRef.current.start()
       }
+      setTimeout(() => fireWorkOff(), 3000)
       setFireWorkIndex(FIREWORK_Z_INDEX_ON)
     } else {
-      // @ts-ignore
-      if (fireworkRef.current.isRunning) {
-        // @ts-ignore
-        fireworkRef.current.stop()
-      }
-      setFireWorkIndex(FIREWORK_Z_INDEX_OFF)
+      fireWorkOff()
     }
   }, [isRevealed])
+
+  const fireWorkOff = () => {
+    // @ts-ignore
+    if (fireworkRef.current.isRunning) {
+      // @ts-ignore
+      fireworkRef.current.stop()
+    }
+    setFireWorkIndex(FIREWORK_Z_INDEX_OFF)
+  }
+
   const widthClassName = isOpen ? "room__container--offcanvas" : "w-100"
 
   return (
@@ -130,7 +137,11 @@ function PlanningRoom() {
           />
         </div>
         <IssueContextProvider>
-          <Issues isOpen={isOpen} toggleOffCanvas={toggleOffCanvas} />
+          <Issues
+            isOpen={isOpen}
+            toggleOffCanvas={toggleOffCanvas}
+            voteResult={voteResult}
+          />
         </IssueContextProvider>
         <Fireworks
           ref={fireworkRef}

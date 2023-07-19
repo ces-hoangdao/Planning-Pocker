@@ -10,7 +10,7 @@ function IssueList({
 }) {
   return (
     issueList && (
-      <div>
+      <div className="d-flex flex-column gap-2">
         {issueList.map((issue) => (
           <IssueBlock
             key={issue.id}
