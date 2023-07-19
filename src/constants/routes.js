@@ -4,7 +4,6 @@ export const ROUTES = {
   NEW_GAME_PATH: "/new-game",
   ROOM: "/room",
   ROOM_PATH: "room/:id",
-  GOOGLE_USER_PATH: "/user/:id",
 }
 
 export const API_ROUTES = {

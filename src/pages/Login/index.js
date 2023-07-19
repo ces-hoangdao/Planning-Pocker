@@ -9,14 +9,14 @@ import {
   Button,
 } from "reactstrap"
 import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
+import PopupTools from "popup-tools"
 import validateEmail from "../../utils/ValidateUtils"
 import { PASS_LIMIT } from "../../constants/authConst"
 import googleIcon from "../../assets/google.png"
 import BASE_URL from "../../constants/baseURL"
-import { ROUTES } from "../../constants/routes"
 import { login } from "../../api/services/authService"
 import { UserContext } from "../../context/userContext"
+import { getUserById } from "../../api/services/userService"
 import "./Login.css"
 
 const initialState = {
@@ -67,10 +67,20 @@ function Login({ setModalCalled }) {
     }))
   }
   const handleGoogleLogin = async () => {
-    window.open(`${BASE_URL}/auth/google`, "_self")
+    PopupTools.popup(
+      `${BASE_URL}/auth/google`,
+      "Google Auth",
+      {},
+      async (err, user) => {
+        if (err) toast.error("Login failed!")
+        else {
+          localStorage.setItem("userId", user)
+          const res = await getUserById(user)
+          setUser(res.data)
+        }
+      }
+    )
   }
-
-  const navigate = useNavigate()
 
   const handleLogin = async () => {
     if (isValidData()) {
@@ -80,7 +90,6 @@ function Login({ setModalCalled }) {
         setUser(res.data)
         successLogin()
         setUserLoginData(initialState)
-        if (!localStorage.getItem("roomId")) navigate(ROUTES.HOME_PATH)
       } catch (err) {
         failLogin()
       }

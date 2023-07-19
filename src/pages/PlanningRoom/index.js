@@ -49,12 +49,14 @@ function PlanningRoom() {
   }, [])
 
   useEffect(() => {
-    if (user._id)
+    if (user._id) {
+      setIsLoggedIn(true)
       socket.on(SOCKET_EVENT.USER.SPECTATOR_MODE, (data) => {
         if (data.userId === user._id) {
           setSpecMode(data.specMode)
         }
       })
+    }
   }, [user])
 
   useEffect(() => {
@@ -64,7 +66,6 @@ function PlanningRoom() {
   const getGameName = async () => {
     const res = await getRoomById(id)
     const { voting, currentResults, ...roomData } = res.data
-    localStorage.setItem("roomId", res.data._id)
     setRoom(roomData)
     setUsers(voting)
     setVoteResult(currentResults)
