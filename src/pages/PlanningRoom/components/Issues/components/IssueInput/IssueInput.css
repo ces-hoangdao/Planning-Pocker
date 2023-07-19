@@ -4,7 +4,7 @@
   resize: none;
 }
 
-.btn-save {
+.btn.btn-save--issue {
   background-color: var(--primary-color);
   color: white;
   border: 1px solid var(--primary-color);
@@ -12,6 +12,11 @@
   height: 3rem;
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
+}
+
+.btn-save:hover {
+  background-color: var(--issue-btn-voting-bg-color-hover);
+  border-color: var(--issue-btn-voting-bg-color-hover);
 }
 
 .btn-cancel {

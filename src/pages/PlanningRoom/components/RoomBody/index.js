@@ -73,11 +73,6 @@ function RoomBody({ isRevealed }) {
       )
     })
     socket.on(SOCKET_EVENT.ROOM.START, clearUserVoting)
-
-    return () => {
-      socket.emit(SOCKET_EVENT.USER.LEAVE)
-      socket.off(SOCKET_EVENT.ALL)
-    }
   }, [])
 
   const handleReveal = () => {
@@ -86,7 +81,7 @@ function RoomBody({ isRevealed }) {
   }
 
   const handleStart = () => {
-    socket.emit(SOCKET_EVENT.ROOM.START)
+    socket.emit(SOCKET_EVENT.ROOM.START, true)
   }
 
   return (

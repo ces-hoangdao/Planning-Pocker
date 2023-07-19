@@ -8,6 +8,7 @@ import { RoomContext } from "./roomContext"
 import { SocketContext } from "./SocketContext"
 import SOCKET_EVENT from "../constants/socket_event"
 import { toastUnknownError } from "../utils/ToastUtils"
+import { ROOM_STATUS } from "../constants/roomConst"
 
 export const IssueContext = createContext(null)
 
@@ -18,27 +19,28 @@ function IssueContextProvider({ children }) {
   const [issueList, setIssueList] = useState([])
 
   useEffect(() => {
+    socket.off(SOCKET_EVENT.ISSUE.NEW)
     socket.on(SOCKET_EVENT.ISSUE.NEW, (issue) => {
       onAddIssue(issue)
     })
+    socket.off(SOCKET_EVENT.ISSUE.REMOVE)
     socket.on(SOCKET_EVENT.ISSUE.REMOVE, (issue) => {
       onDeleteIssue(issue)
     })
+    socket.off(SOCKET_EVENT.ISSUE.SELECT)
     socket.on(SOCKET_EVENT.ISSUE.SELECT, (issue) => {
       setSelectedIssue(issue)
     })
+    socket.off(SOCKET_EVENT.ISSUE.NAME_CHANGE)
     socket.on(SOCKET_EVENT.ISSUE.NAME_CHANGE, onUpdateIssue)
   }, [])
 
   useEffect(() => {
-    if (room && room._id) {
-      loadIssues()
-    }
+    loadIssues()
   }, [room])
 
   const onAddIssue = (issue) => {
     setIssueList((prevList) => [...prevList, issue])
-    setSelectedIssue(issue)
   }
 
   const onUpdateIssue = (issue) => {
@@ -46,7 +48,7 @@ function IssueContextProvider({ children }) {
     setIssueList((oldIssueList) =>
       oldIssueList.map((_issue) => {
         if (_issue._id === issue._id) {
-          _issue.name = issue.name
+          _issue = { ...issue }
         }
 
         return _issue
@@ -95,9 +97,11 @@ function IssueContextProvider({ children }) {
 
   const loadIssues = async () => {
     try {
-      const res = await getIssuesInRoom(room._id)
-      if (res.success) {
-        setIssueList(res.data)
+      if (room && room._id) {
+        const res = await getIssuesInRoom(room._id)
+        if (res.success) {
+          setIssueList(res.data)
+        }
       }
     } catch {
       toastUnknownError()
@@ -106,12 +110,22 @@ function IssueContextProvider({ children }) {
 
   const emitSelectedIssue = (issue) => {
     setSelectedIssue(issue)
+    if (room.status === ROOM_STATUS.CONCLUDED && issue) {
+      socket.emit(SOCKET_EVENT.ROOM.START, false)
+    }
     socket.emit(SOCKET_EVENT.ISSUE.SELECT, issue)
   }
 
   return (
     <IssueContext.Provider
-      value={{ issueList, deleteIssue, addIssue, emitSelectedIssue, updateIssue }}
+      value={{
+        issueList,
+        deleteIssue,
+        addIssue,
+        emitSelectedIssue,
+        updateIssue,
+        loadIssues,
+      }}
     >
       {children}
     </IssueContext.Provider>

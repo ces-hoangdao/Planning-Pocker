@@ -26,7 +26,9 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
       toggle={toggleModalHistory}
       centered
     >
-      <ModalHeader toggle={toggleModalHistory}>Voting history</ModalHeader>
+      <ModalHeader toggle={toggleModalHistory} className="border-0">
+        Voting history
+      </ModalHeader>
       <ModalBody>
         <Table className="history-modal__body-table">
           <thead className="history-modal__body-header table-secondary">
