@@ -44,7 +44,7 @@ function InvitePlayers(props) {
         centered
         className="modal-invite-players"
       >
-        <ModalHeader toggle={toggle} className="modal-title">
+        <ModalHeader toggle={toggle} className="modal-title border-0">
           Invite players
         </ModalHeader>
         <ModalBody>
@@ -65,7 +65,7 @@ function InvitePlayers(props) {
             </FormGroup>
           </Form>
         </ModalBody>
-        <ModalFooter className="change-profile-footer">
+        <ModalFooter className="border-0">
           <Button block color="primary" className="btn-copy-link" onClick={copyText}>
             Copy invitation link
           </Button>

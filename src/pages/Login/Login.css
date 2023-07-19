@@ -40,7 +40,7 @@
 }
 
 .modal-backdrop.show {
-  --bs-backdrop-bg: rgb(26, 41, 53);
+  --bs-backdrop-bg: var(--text-color);
   --bs-backdrop-opacity: 0.8;
 }
 

@@ -40,7 +40,7 @@
 }
 
 .modal-backdrop.show {
-  --bs-backdrop-bg: rgb(26, 41, 53);
+  --bs-backdrop-bg: var(--text-color);
   --bs-backdrop-opacity: 0.8;
 }
 
@@ -71,13 +71,13 @@
 
 .Toastify__toast--success .Toastify__toast-body {
   font-size: var(--font-size-medium);
-  color: #07bc0c;
+  color: var(--success-color);
   font-weight: var(--font-weight-medium);
 }
 
 .Toastify__toast--error .Toastify__toast-body {
   font-size: var(--font-size-medium);
-  color: #e74c3c;
+  color: var(--error-color);
   font-weight: var(--font-weight-medium);
 }
 

@@ -2,6 +2,10 @@
   --primary-color: #3993ff;
   --secondary-color: #74b3ff;
   --background-color: #ebf4ff;
+  --room-background-color: #f9f9f9;
+  --input-border-color-focus: rgba(56, 146, 255, 0.75);
+  --dropdown-menu-box-shadow-color: rgba(200, 200, 200, 0.576);
+  --btn-start-bg-color: #48545d;
   --btn-background-color-hover: #c4dfff;
   --dropdown-background-color: #f2f2f2;
   --dropdown-icon-color: #a0a0a0;
