@@ -47,24 +47,28 @@ function Home() {
           </Link>
         </div>
       </nav>
-      <Container className="home-main-container d-flex flex-column justify-content-center">
-        <div className="home_title_container d-flex justify-content-center align-items-center">
+      <Container className="home-main-container d-flex flex-column justify-content-evenly">
+        <div className="home_title_container text-center">
           <span className="home_title">Press Play on Planning Poker Online</span>
         </div>
-        <div className="home_subtitle_container d-flex justify-content-center">
-          <span className="home_subtitle ">
+        <div className="home_subtitle_container text-center">
+          <span className="home_subtitle">
             3 Simple Steps to Start Your Story Estimates
           </span>
         </div>
         <Container className="home-steps-container d-flex justify-content-evenly align-items-center">
           {steps.map((step) => (
             <div
-              className="step-container d-flex flex-column justify-content-between align-items-center"
+              className="step-container d-flex flex-column justify-content-start align-items-center"
               key={step.title}
             >
               <img src={step.image} alt="step" className="step-image-container" />
-              <span className="step-title-container text-center">{step.title}</span>
-              <p className="step-subtitle-container text-center">{step.subtitle}</p>
+              <p className="step-title-container text-center fw-bold lh-base">
+                {step.title}
+                <p className="step-subtitle-container text-center fw-normal lh-base mt-4">
+                  {step.subtitle}
+                </p>
+              </p>
             </div>
           ))}
         </Container>

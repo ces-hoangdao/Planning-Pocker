@@ -4,7 +4,6 @@
 
 .card-list-section {
   height: 8rem;
-  text-align: center;
 }
 
 .choose-your-card {
@@ -89,8 +88,4 @@
 
 .coffee-time i {
   font-size: var(--font-size-modal-title);
-}
-
-.room__footer {
-  height: 17rem;
 }

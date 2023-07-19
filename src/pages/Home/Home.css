@@ -73,24 +73,24 @@
 }
 
 .container.home-steps-container {
-  width: 100%;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 .step-container {
-  max-width: calc(100% / 3);
-  height: 40rem;
-}
-
-.container .step-title-container {
-  font-size: var(--font-size-large);
-  font-weight: var(--font-weight-medium);
-}
-
-.container .step-subtitle-container {
-  font-size: var(--font-size-medium);
+  width: calc(100% / 3 - 8rem);
+  height: 50rem;
+  gap: 6rem;
 }
 
 .step-image-container {
   height: 20rem;
+}
+
+.step-title-container {
+  font-size: var(--font-size-modal-title);
+  font-weight: var(--font-weight-medium);
+}
+
+.step-title-container .step-subtitle-container {
+  font-size: var(--font-size-medium);
 }

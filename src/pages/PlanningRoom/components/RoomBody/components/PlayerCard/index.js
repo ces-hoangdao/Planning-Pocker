@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { UncontrolledTooltip } from "reactstrap"
 
 function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
   const [user, setUser] = useState(null)
@@ -9,10 +10,7 @@ function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
 
   return (
     user && (
-      <div
-        className="player-card-wrapper d-flex flex-column align-items-center justify-content-center"
-        key={user.id}
-      >
+      <div className="player-card-wrapper d-flex flex-column align-items-center justify-content-center">
         {!user.specMode ? (
           <div
             className={`player-card-empty
@@ -35,7 +33,12 @@ function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
         )}
 
         <div className="player-name-container">
-          {user.username} {isMainPlayer ? " (You)" : ""}
+          <p className="player-name-text" id={`tooltip-${user?.userId}`}>
+            {user.username} {isMainPlayer ? " (You)" : ""}
+          </p>
+          <UncontrolledTooltip placement="bottom" target={`tooltip-${user?.userId}`}>
+            {user.username}
+          </UncontrolledTooltip>
         </div>
       </div>
     )

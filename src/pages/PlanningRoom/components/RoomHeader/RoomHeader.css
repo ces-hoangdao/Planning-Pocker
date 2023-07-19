@@ -43,6 +43,10 @@
   padding: 0.7rem 1rem;
 }
 
+.dropdown-item.item:hover {
+  background-color: var(--background-color);
+}
+
 .dropdown-item i {
   color: var(--dropdown-icon-color);
   margin-right: 0.9rem;
@@ -51,7 +55,7 @@
 .dropdown-menu.show {
   --bs-dropdown-link-active-color: var(--text-color);
   --bs-dropdown-link-active-bg: var(--dropdown-background-color);
-  box-shadow: 1px 2px 6px 0px rgba(200, 200, 200, 0.576);
+  box-shadow: 1px 2px 6px 0px var(--dropdown-menu-box-shadow-color);
 }
 
 .dropdown-header.item-game-name {

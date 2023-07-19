@@ -20,7 +20,7 @@
 
 .input-guest-name:focus {
   outline: none;
-  border: 2px solid rgba(57, 146, 255, 0.75);
+  border: 2px solid var(--input-border-color-focus);
 }
 
 .error-message {

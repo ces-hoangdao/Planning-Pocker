@@ -73,7 +73,7 @@ function LoginAsGuest({ isLoggedIn }) {
           </form>
         </ModalBody>
         <ModalFooter className="border-0 w-100">
-          <ModalComponent modalName="login" isLoggedIn={isLoggedIn} />
+          <ModalComponent />
         </ModalFooter>
       </Modal>
     </div>

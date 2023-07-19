@@ -48,7 +48,7 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
         </div>
       ) : (
         !specMode && (
-          <div className="d-flex flex-column gap-4 card-list-section">
+          <div className="d-flex flex-column gap-4 align-items-center card-list-section">
             <div className="choose-your-card">
               <span>Choose your card below</span>
               <img src={iconHandDown} alt="" className="icon-hand-down" />
