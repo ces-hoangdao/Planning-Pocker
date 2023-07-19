@@ -2,7 +2,6 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ToastContainer, Zoom } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import GoogleLogin from "./pages/Login/Google"
 import NewGame from "./pages/NewGame"
 import { ROUTES } from "./constants/routes"
 import "./index.css"
@@ -38,7 +37,6 @@ function App() {
               </RoomContextProvider>
             }
           />
-          <Route path={ROUTES.GOOGLE_USER_PATH} element={<GoogleLogin />} />
         </Routes>
       </BrowserRouter>
     </div>
