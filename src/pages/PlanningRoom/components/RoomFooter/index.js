@@ -3,16 +3,23 @@ import { Button } from "reactstrap"
 import iconHandDown from "../../../../assets/icon_hand_down.png"
 import SOCKET_EVENT from "../../../../constants/socket_event"
 import { SocketContext } from "../../../../context/SocketContext"
+import { RoomContext } from "../../../../context/roomContext"
 import "./RoomFooter.css"
 
 function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
   const { socket } = useContext(SocketContext)
+  const { setSpecMode } = useContext(RoomContext)
   const [pickedCard, setPickedCard] = useState()
 
   const handlePickCard = (card) => {
     const voteValue = card !== pickedCard ? card : ""
     setPickedCard(voteValue)
     socket.emit(SOCKET_EVENT.USER.VOTE, { voteValue })
+  }
+
+  const handleDeactivate = () => {
+    setSpecMode(!specMode)
+    socket.emit(SOCKET_EVENT.USER.SPECTATOR_MODE, { specMode: !specMode })
   }
 
   useEffect(() => {
@@ -47,7 +54,7 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
           )}
         </div>
       ) : (
-        !specMode && (
+        (!specMode && (
           <div className="d-flex flex-column gap-4 align-items-center card-list-section">
             <div className="choose-your-card">
               <span>Choose your card below</span>
@@ -76,7 +83,21 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
               </ul>
             </div>
           </div>
-        )
+        )) ||
+        (specMode && (
+          <div className="activated-spec-mode-container d-flex flex-column align-items-center gap-3">
+            <span>
+              You are in spectator mode <i className="fa fa-eye"></i>
+            </span>
+            <button
+              type="button"
+              className="bg-transparent border-0 btn-deactivate-spec-mode"
+              onClick={handleDeactivate}
+            >
+              Deactivate
+            </button>
+          </div>
+        ))
       )}
     </div>
   )

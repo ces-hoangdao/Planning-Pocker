@@ -66,11 +66,15 @@
   gap: 1rem;
 }
 
-.dropdown-header.item-game-name i {
+.dropdown-header.item-game-name .btn-edit {
+  color: var(--dropdown-icon-color);
+}
+
+.dropdown-header.item-game-name .btn-edit:hover {
   color: var(--text-color);
 }
 
-.dropdown-header.item-game-name .btn-done i {
+.dropdown-header.item-game-name .btn-done {
   color: var(--secondary-color);
 }
 

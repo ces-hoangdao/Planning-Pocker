@@ -37,7 +37,7 @@ function PlayerCard({ userVoting, isMainPlayer, isRevealed }) {
             {user.username} {isMainPlayer ? " (You)" : ""}
           </p>
           <UncontrolledTooltip placement="bottom" target={`tooltip-${user?.userId}`}>
-            {user.username}
+            {user.username} {isMainPlayer ? " (You)" : ""}
           </UncontrolledTooltip>
         </div>
       </div>
