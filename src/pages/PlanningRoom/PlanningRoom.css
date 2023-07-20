@@ -1,5 +1,7 @@
 .room {
   background-color: var(--room-background-color);
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .room__container {
