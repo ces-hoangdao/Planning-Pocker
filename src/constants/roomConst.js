@@ -4,3 +4,7 @@ export const ROOM_STATUS = {
 }
 
 export const ROOM_DEFAULT_NAME = "Planning poker game"
+
+export const EXTRA_CARD = {
+  COFFEE: "coffee",
+}

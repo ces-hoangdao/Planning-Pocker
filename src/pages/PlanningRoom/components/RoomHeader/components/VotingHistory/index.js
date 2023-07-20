@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Modal, ModalBody, ModalHeader, Table } from "reactstrap"
 import { getVotingHistory } from "../../../../../../api/services/roomService"
 import { RoomContext } from "../../../../../../context/roomContext"
+import { EXTRA_CARD } from "../../../../../../constants/roomConst"
 import "./VotingHistory.css"
 
 function VotingHistory({ modalHistory, toggleModalHistory }) {
@@ -51,10 +52,22 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
               return (
                 <tr>
                   <th>{vote.issueName}</th>
-                  <td>{vote.results}</td>
+                  <td>
+                    {vote.results === EXTRA_CARD.COFFEE ? (
+                      <i className="fa fa-coffee" />
+                    ) : (
+                      vote.results
+                    )}
+                  </td>
                   <td>{showDate}</td>
                   <td>{vote.voteOnTotal}</td>
-                  <td>{vote.playerResults}</td>
+                  <td>
+                    {vote.playerResults.split(/(coffee)/).map((str) => {
+                      if (str === EXTRA_CARD.COFFEE)
+                        return <i className="fa fa-coffee" />
+                      return str
+                    })}
+                  </td>
                 </tr>
               )
             })}

@@ -4,6 +4,7 @@ import iconHandDown from "../../../../assets/icon_hand_down.png"
 import SOCKET_EVENT from "../../../../constants/socket_event"
 import { SocketContext } from "../../../../context/SocketContext"
 import { RoomContext } from "../../../../context/roomContext"
+import { EXTRA_CARD } from "../../../../constants/roomConst"
 import "./RoomFooter.css"
 
 function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
@@ -35,15 +36,15 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
           <div className="d-flex flex-column justify-content-evenly align-items-center mx-3 gap-2 result-average-container">
             <span className="average-label">Average</span>
             <div className="result-card">
-              {voteResult.results === "coffee" ? (
+              {voteResult.results === EXTRA_CARD.COFFEE ? (
                 <i className="fa fa-coffee" />
               ) : (
                 <span>{voteResult.results}</span>
               )}
             </div>
             <span className="vote-count">
-              {voteResult.voteOnTotal.charAt(0)}
-              {Number(voteResult.voteOnTotal.charAt(0)) > 1 ? " Votes" : " Vote"}
+              {voteResult.voteOnTotal.split("/")[0]}
+              {Number(voteResult.voteOnTotal.split("/")[0]) > 1 ? " Votes" : " Vote"}
             </span>
           </div>
           {voteResult.coffeeTime && (
@@ -72,7 +73,7 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
                       }
                       onClick={() => handlePickCard(card)}
                     >
-                      {card === "coffee" ? (
+                      {card === EXTRA_CARD.COFFEE ? (
                         <i className="fa fa-coffee" />
                       ) : (
                         <span>{card}</span>
