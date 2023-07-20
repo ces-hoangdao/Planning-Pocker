@@ -25,6 +25,11 @@
   width: 7.5rem;
 }
 
+.table-module-bottom {
+  grid-area: bottom;
+  height: 13rem;
+}
+
 .table-module-center {
   grid-area: center;
   height: 18rem;
@@ -44,11 +49,6 @@
   border-radius: 5rem;
   font-size: var(--font-size-large);
   box-shadow: 0px 0px 2rem var(--secondary-color);
-}
-
-.table-module-bottom {
-  grid-area: bottom;
-  height: 13rem;
 }
 
 .player-card-empty {

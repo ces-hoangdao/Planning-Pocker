@@ -73,6 +73,11 @@ function RoomBody({ isRevealed }) {
       )
     })
     socket.on(SOCKET_EVENT.ROOM.START, clearUserVoting)
+
+    return () => {
+      socket.emit(SOCKET_EVENT.USER.LEAVE)
+      socket.off(SOCKET_EVENT.ALL)
+    }
   }, [])
 
   const handleReveal = () => {
@@ -91,7 +96,7 @@ function RoomBody({ isRevealed }) {
       </div>
       <div className="table-module-wrapper d-flex align-items-center justify-content-center">
         <div className="table-module-container d-inline-grid">
-          <div className="table-module-top d-flex align-items-center justify-content-center">
+          <div className="table-module-top d-flex align-items-center justify-content-center gap-4">
             {topUserList.map((_user) => (
               <PlayerCard
                 userVoting={_user}
@@ -119,7 +124,7 @@ function RoomBody({ isRevealed }) {
               />
             )}
           </div>
-          <div className="table-module-bottom d-flex align-items-center justify-content-center">
+          <div className="table-module-bottom d-flex align-items-center justify-content-center gap-4">
             {bottomUserList.map((_user) => (
               <PlayerCard
                 userVoting={_user}

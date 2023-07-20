@@ -23,8 +23,7 @@ import logo from "../../../../assets/logo.png"
 import { GAME_NAME_LIMIT } from "../../../../constants/authConst"
 import "./RoomHeader.css"
 
-function RoomHeader(props) {
-  const { gameName, toggleOffCanvas } = props
+function RoomHeader({ gameName, toggleOffCanvas }) {
   const { user } = useContext(UserContext)
   const { room, setRoom } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)

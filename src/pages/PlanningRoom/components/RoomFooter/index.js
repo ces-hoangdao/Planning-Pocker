@@ -6,9 +6,9 @@ import { SocketContext } from "../../../../context/SocketContext"
 import { RoomContext } from "../../../../context/roomContext"
 import "./RoomFooter.css"
 
-function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
+function RoomFooter({ votingSystem, isRevealed, voteResult }) {
   const { socket } = useContext(SocketContext)
-  const { setSpecMode } = useContext(RoomContext)
+  const { specMode, setSpecMode } = useContext(RoomContext)
   const [pickedCard, setPickedCard] = useState()
 
   const handlePickCard = (card) => {
@@ -19,7 +19,7 @@ function RoomFooter({ votingSystem, isRevealed, voteResult, specMode }) {
 
   const handleDeactivate = () => {
     setSpecMode(!specMode)
-    socket.emit(SOCKET_EVENT.USER.SPECTATOR_MODE, { specMode: !specMode })
+    socket.emit(SOCKET_EVENT.USER.SPECTATOR_MODE, { specMode: false })
   }
 
   useEffect(() => {
