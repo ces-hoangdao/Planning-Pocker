@@ -20,7 +20,8 @@ const FIREWORK_Z_INDEX_ON = 0
 const FIREWORK_Z_INDEX_OFF = -1
 
 function PlanningRoom() {
-  const { room, setRoom, setUsers, setSelectedIssue } = useContext(RoomContext)
+  const { room, setRoom, setUsers, setSelectedIssue, setSpecMode } =
+    useContext(RoomContext)
   const { socket } = useContext(SocketContext)
   const { user } = useContext(UserContext)
 
@@ -28,7 +29,6 @@ function PlanningRoom() {
   const [isOpen, setIsOpen] = useState(false)
   const [isRevealed, setIsRevealed] = useState(false)
   const [voteResult, setVoteResult] = useState(null)
-  const [specMode, setSpecMode] = useState(false)
   const [fireworkIndex, setFireWorkIndex] = useState(FIREWORK_Z_INDEX_OFF)
 
   const fireworkRef = useRef()
@@ -134,7 +134,6 @@ function PlanningRoom() {
             votingSystem={room.votingSystem}
             isRevealed={isRevealed}
             voteResult={voteResult}
-            specMode={specMode}
           />
         </div>
         <IssueContextProvider>
