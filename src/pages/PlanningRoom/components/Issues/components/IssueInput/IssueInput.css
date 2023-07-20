@@ -14,7 +14,7 @@
   font-weight: var(--font-weight-medium);
 }
 
-.btn-save:hover {
+.btn.btn-save--issue:hover {
   background-color: var(--issue-btn-voting-bg-color-hover);
   border-color: var(--issue-btn-voting-bg-color-hover);
 }
