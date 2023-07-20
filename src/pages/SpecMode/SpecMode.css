@@ -1,8 +1,22 @@
-.spec-mode {
+.item-spec-mode {
+  cursor: pointer;
   font-size: var(--font-size-small);
-  width: 18rem;
+  padding: 0.7rem 1rem;
 }
 
-.form-switch {
-  margin-left: 1rem;
+.item-spec-mode:hover {
+  background-color: var(--background-color);
+}
+
+.spec-mode-container i {
+  color: var(--dropdown-icon-color);
+  margin-right: 0.9rem;
+}
+
+.spec-mode-container .spec-mode-label {
+  white-space: nowrap;
+}
+
+.switch-input {
+  cursor: pointer;
 }

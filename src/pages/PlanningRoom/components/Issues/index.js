@@ -47,12 +47,12 @@ function Issues({ isOpen, toggleOffCanvas, voteResult }) {
       direction="end"
       isOpen={isOpen}
       toggle={toggleOffCanvas}
-      className="canvas-issue"
+      className="canvas-issue border-0"
     >
       <OffcanvasHeader toggle={toggleOffCanvas}>
-        <div className="d-flex flex-column">
-          <span>Issues</span>
-          <p className="issues-report">{`${issueCount} issues・${totalPoint} points`}</p>
+        <div className="d-flex flex-column gap-2">
+          <span className="fs-3">Issues</span>
+          <p className="issues-report m-0">{`${issueCount} issues・${totalPoint} points`}</p>
         </div>
       </OffcanvasHeader>
       <OffcanvasBody>

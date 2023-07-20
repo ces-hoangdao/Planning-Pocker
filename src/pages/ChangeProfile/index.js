@@ -34,10 +34,10 @@ function ChangeProfile() {
   const [errorMessage, setErrorMessage] = useState("")
   const [displayName, setDisplayName] = useState("")
   const [photo, setPhoto] = useState("")
-  const [modal, setModal] = useState(false)
+  const [modalProfile, setModalProfile] = useState(false)
   const navigate = useNavigate()
 
-  const toggle = () => setModal(!modal)
+  const toggleModalProfile = () => setModalProfile(!modalProfile)
 
   const handleInputChange = (event) => {
     setDisplayName(event.target.value)
@@ -67,7 +67,7 @@ function ChangeProfile() {
       if (res.success) {
         setUser(res.data)
         socket.emit(SOCKET_EVENT.USER.NAME_CHANGE, { name: displayName })
-        toggle()
+        toggleModalProfile()
       }
     } catch {
       toast.error("Failed to update your profile!")
@@ -90,7 +90,7 @@ function ChangeProfile() {
   return (
     <div className="change-profile">
       <DropdownMenu className="border-0 mt-3">
-        <DropdownItem className="item" onClick={toggle}>
+        <DropdownItem className="item" onClick={toggleModalProfile}>
           <i className="fa fa-user" />
           Change profile
         </DropdownItem>
@@ -107,12 +107,12 @@ function ChangeProfile() {
         </DropdownItem>
       </DropdownMenu>
       <Modal
-        isOpen={modal}
-        toggle={toggle}
+        isOpen={modalProfile}
+        toggle={toggleModalProfile}
         centered
         className="modal-change-profile"
       >
-        <ModalHeader toggle={toggle} className="modal-title border-0">
+        <ModalHeader toggle={toggleModalProfile} className="modal-title border-0">
           Change your information
         </ModalHeader>
         <ModalBody>

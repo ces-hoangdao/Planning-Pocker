@@ -89,3 +89,22 @@
 .coffee-time i {
   font-size: var(--font-size-modal-title);
 }
+
+.activated-spec-mode-container {
+  font-size: var(--font-size-medium);
+  color: var(--text-color);
+}
+
+.activated-spec-mode-container .btn-deactivate-spec-mode {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-large);
+}
+
+.activated-spec-mode-container i {
+  font-size: var(--font-size-extra-small);
+  color: var(--dropdown-icon-color);
+}
+
+.activated-spec-mode-container .btn-deactivate-spec-mode:hover {
+  color: var(--secondary-color);
+}
