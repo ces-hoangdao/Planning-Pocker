@@ -50,7 +50,7 @@ function SignUp({ setModalCalled }) {
   const setErrorsMessage = () => {
     setErrors(errorMessages)
   }
-  const successSignUp = () => toast.success("Created user!")
+  const successSignUp = () => toast.success("User created!")
 
   const failSignUp = () => {
     toast.error("Create user failed")
