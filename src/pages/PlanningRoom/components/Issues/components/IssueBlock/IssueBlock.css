@@ -146,3 +146,11 @@
 .issue-block-header {
   height: 3rem;
 }
+
+.modal-edit .modal-title {
+  font-size: var(--font-size-modal-title);
+}
+
+.modal-delete .modal-title {
+  font-size: var(--font-size-large);
+}
