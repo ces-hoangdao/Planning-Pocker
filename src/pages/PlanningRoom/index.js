@@ -88,23 +88,20 @@ function PlanningRoom() {
   }, [id])
 
   useEffect(() => {
-    if (room) setIsRevealed(room.status === ROOM_STATUS.CONCLUDED)
-  }, [room])
-
-  useEffect(() => {
     if (!fireworkRef.current) return
 
+    const timeOut = setTimeout(() => fireWorkOff(), 3000)
     if (isRevealed) {
       // @ts-ignore
       if (!fireworkRef.current.isRunning) {
         // @ts-ignore
         fireworkRef.current.start()
       }
-      setTimeout(() => fireWorkOff(), 3000)
       setFireWorkIndex(FIREWORK_Z_INDEX_ON)
     } else {
       fireWorkOff()
     }
+    return () => clearTimeout(timeOut)
   }, [isRevealed])
 
   const fireWorkOff = () => {
@@ -149,6 +146,7 @@ function PlanningRoom() {
             opacity: 0.5,
           }}
           style={{
+            display: isRevealed ? "block" : "none",
             top: 0,
             left: 0,
             width: "100%",
