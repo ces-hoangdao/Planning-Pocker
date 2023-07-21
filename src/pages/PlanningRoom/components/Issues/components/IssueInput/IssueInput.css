@@ -9,8 +9,7 @@
   color: white;
   border: 1px solid var(--primary-color);
   border-radius: 0.5rem;
-  height: 3rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-medium);
   font-weight: var(--font-weight-medium);
 }
 
@@ -24,7 +23,6 @@
   color: var(--primary-color);
   border: 1.5px solid var(--issue-input-bg-color);
   border-radius: 0.5rem;
-  height: 3rem;
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
 }

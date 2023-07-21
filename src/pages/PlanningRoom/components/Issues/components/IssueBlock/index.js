@@ -5,6 +5,8 @@ import {
   CardTitle,
   Button,
   Modal,
+  ModalHeader,
+  ModalBody,
   ModalFooter,
   Dropdown,
   DropdownMenu,
@@ -121,9 +123,18 @@ function IssueBlock({
           </div>
         </div>
       </Card>
-      <Modal isOpen={modalDelete} toggle={toggleDelete} centered>
-        <h2>Are you sure you want to delete this issue?</h2>
-        <p className="fs-4 align-self-left">This operation is irreversible.</p>
+      <Modal
+        isOpen={modalDelete}
+        toggle={toggleDelete}
+        centered
+        className="modal-delete"
+      >
+        <ModalHeader className="border-0 modal-title" toggle={toggleDelete}>
+          Are you sure you want to delete this issue?
+        </ModalHeader>
+        <ModalBody className="fs-4 align-self-left">
+          This operation is irreversible.
+        </ModalBody>
         <ModalFooter className="d-flex justify-content-between align-content-center border-0">
           <Button
             className="me-5 flex-fill btn-delete-issue--cancel"
@@ -132,45 +143,50 @@ function IssueBlock({
             Cancel
           </Button>
           <Button
-            className="border-0 ms-5 flex-fill btn-delete-issue--ok"
+            className="ms-5 flex-fill btn-delete-issue--ok"
             onClick={handleConfirmDelete}
           >
             Delete
           </Button>
         </ModalFooter>
       </Modal>
-      <Modal isOpen={editing} toggle={toggleEditing} centered>
-        <Form
-          onSubmit={handleUpdateIssue}
-          className="d-flex justify-content-center flex-column mb-1"
-        >
-          <Input
-            type="textarea"
-            className="issue-edit"
-            placeholder="Enter a title for the issue"
-            autoFocus
-            value={newIssueName}
-            onChange={(e) => setNewIssueName(e.target.value)}
-          />
-          <div className="d-flex justify-content-between mt-4">
-            <button
-              type="button"
-              id="cancel"
-              className="w-50 me-3 btn-cancel btn-delete-issue--cancel"
-              onClick={handleCancelEdit}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="w-50 ms-3 btn btn-save--issue"
-              disabled={saveButtonDisabled}
-              onClick={handleUpdateIssue}
-            >
-              Save
-            </button>
-          </div>
-        </Form>
+      <Modal isOpen={editing} toggle={toggleEditing} centered className="modal-edit">
+        <ModalHeader className="border-0 modal-title" toggle={toggleEditing}>
+          Edit issue
+        </ModalHeader>
+        <ModalBody>
+          <Form
+            onSubmit={handleUpdateIssue}
+            className="d-flex justify-content-center flex-column mb-1"
+          >
+            <Input
+              type="textarea"
+              className="issue-edit"
+              placeholder="Enter a title for the issue"
+              autoFocus
+              value={newIssueName}
+              onChange={(e) => setNewIssueName(e.target.value)}
+            />
+            <div className="d-flex justify-content-between mt-4">
+              <button
+                type="button"
+                id="cancel"
+                className="w-50 me-3 btn-cancel btn-delete-issue--cancel"
+                onClick={handleCancelEdit}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="w-50 ms-3 btn btn-save--issue"
+                disabled={saveButtonDisabled}
+                onClick={handleUpdateIssue}
+              >
+                Save
+              </button>
+            </div>
+          </Form>
+        </ModalBody>
       </Modal>
     </>
   )
