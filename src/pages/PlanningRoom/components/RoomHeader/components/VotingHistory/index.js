@@ -26,6 +26,7 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
       isOpen={modalHistory}
       toggle={toggleModalHistory}
       centered
+      scrollable
     >
       <ModalHeader toggle={toggleModalHistory} className="border-0">
         Voting history
@@ -62,9 +63,9 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
                   <td>{showDate}</td>
                   <td>{vote.voteOnTotal}</td>
                   <td>
-                    {vote.playerResults.split(/(coffee)/).map((str) => {
+                    {vote.playerResults.split(/(coffee)/).map((str, index) => {
                       if (str === EXTRA_CARD.COFFEE)
-                        return <i className="fa fa-coffee" />
+                        return <i className="fa fa-coffee" key={index} />
                       return str
                     })}
                   </td>
