@@ -9,16 +9,11 @@
 
 .history-modal__body-table {
   border-collapse: separate;
-  border-spacing: 0 1em;
+  border-spacing: 0;
 }
 
 .history-table-body tr {
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-medium);
-}
-
-td i {
-  font-size: 85%;
+  font-size: var(--font-size-medium);
 }
 
 tbody tr:hover td, tbody tr:hover th{

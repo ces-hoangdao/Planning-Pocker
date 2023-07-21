@@ -35,10 +35,10 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
         <Table className="history-modal__body-table">
           <thead className="history-modal__body-header table-secondary">
             <tr>
-              <th>Issue name</th>
+              <th className="ps-4">Issue name</th>
               <th>Result</th>
               <th>Date</th>
-              <th>Vote/total</th>
+              <th>Vote/Total</th>
               <th>Player results</th>
             </tr>
           </thead>
@@ -52,7 +52,7 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
               })
               return (
                 <tr key={vote.date}>
-                  <th>{vote.issueName}</th>
+                  <th className="ps-4">{vote.issueName}</th>
                   <td>
                     {vote.results === EXTRA_CARD.COFFEE ? (
                       <i className="fa fa-coffee" />
