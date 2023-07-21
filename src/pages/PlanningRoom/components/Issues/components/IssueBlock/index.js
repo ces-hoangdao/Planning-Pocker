@@ -77,11 +77,12 @@ function IssueBlock({
             <DropdownToggle className={`dot-menu ${isSelected && "voting"}`}>
               <i className="fa-solid fa-ellipsis-vertical fa-rotate-90" />
             </DropdownToggle>
-            <DropdownMenu className="menu">
+            <DropdownMenu className="menu border-0">
               <DropdownItem className="menu-option" onClick={() => setEditing(true)}>
                 <i className="fa-solid fa-pencil edit-icon" />
                 <span className="option-text">Edit</span>
               </DropdownItem>
+              <DropdownItem divider />
               <DropdownItem
                 className="menu-option"
                 onClick={() => setModalDelete(true)}

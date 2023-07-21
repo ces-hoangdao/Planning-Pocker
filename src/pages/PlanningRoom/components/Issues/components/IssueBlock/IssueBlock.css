@@ -74,10 +74,6 @@
   background-color: var(--menu-option-hover-bg-color);
 }
 
-.menu-option:focus {
-  background-color: var(--menu-option-focus-bg-color);
-}
-
 .btn.btn-secondary.dot-menu {
   background-color: transparent;
   border: 0;
