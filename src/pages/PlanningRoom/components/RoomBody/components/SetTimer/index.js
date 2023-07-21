@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { toast } from "react-toastify"
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  Alert,
-} from "reactstrap"
+import { Dropdown, DropdownToggle, DropdownMenu, Button, Alert } from "reactstrap"
 import { SocketContext } from "../../../../../../context/SocketContext"
 import SOCKET_EVENT from "../../../../../../constants/socket_event"
 import iconClock from "../../../../../../assets/icon_clock.png"
@@ -82,7 +75,7 @@ function SetTimer() {
         </DropdownToggle>
         <DropdownMenu className="border-0 mt-3 dropdown-timer">
           <form
-            className="d-flex flex-column justify-content-between align-items-center m-3"
+            className="d-flex flex-column justify-content-between align-items-center m-4 gap-4"
             onSubmit={handleStart}
           >
             <div className="form-floating">
@@ -98,8 +91,6 @@ function SetTimer() {
                 Minutes
               </label>
             </div>
-          </form>
-          <DropdownItem className="my-3">
             <Button
               color="primary"
               block
@@ -108,7 +99,7 @@ function SetTimer() {
             >
               <i className="fa fa-play"></i> Start
             </Button>
-          </DropdownItem>
+          </form>
         </DropdownMenu>
       </Dropdown>
       {remainingTime > 0 && (
