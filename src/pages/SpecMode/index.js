@@ -26,7 +26,7 @@ function SpecMode() {
             type="switch"
             role="switch"
             onClick={handleSpecMode}
-            checked={specMode}
+            defaultChecked={specMode}
             className="switch-input"
           />
         </FormGroup>

@@ -50,7 +50,7 @@ function VotingHistory({ modalHistory, toggleModalHistory }) {
                 hourCycle: "h24",
               })
               return (
-                <tr>
+                <tr key={vote.date}>
                   <th>{vote.issueName}</th>
                   <td>
                     {vote.results === EXTRA_CARD.COFFEE ? (
