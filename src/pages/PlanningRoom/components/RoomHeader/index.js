@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import React, { useContext, useState, useEffect, useRef } from "react"
+import React, { useContext, useState } from "react"
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -14,62 +14,22 @@ import ChangeProfile from "../../../ChangeProfile"
 import VotingHistory from "./components/VotingHistory"
 import { UserContext } from "../../../../context/userContext"
 import { RoomContext } from "../../../../context/roomContext"
-import { SocketContext } from "../../../../context/SocketContext"
-import { ROOM_DEFAULT_NAME } from "../../../../constants/roomConst"
 import { ROUTES } from "../../../../constants/routes"
-import SOCKET_EVENT from "../../../../constants/socket_event"
 import defaultUserPhoto from "../../../../assets/user_photo.png"
 import logo from "../../../../assets/logo.png"
-import { GAME_NAME_LIMIT } from "../../../../constants/authConst"
 import "./RoomHeader.css"
+import ChangeGameName from "../../../ChangeGameName"
 
 function RoomHeader({ gameName, toggleOffCanvas }) {
   const { user } = useContext(UserContext)
-  const { room, setRoom, selectedIssue } = useContext(RoomContext)
-  const { socket } = useContext(SocketContext)
-  const [isEditing, setIsEditing] = useState(false)
-  const [roomName, setRoomName] = useState("")
-  const inputRef = useRef(null)
+  const { selectedIssue } = useContext(RoomContext)
 
   const [modalHistory, setModalHistory] = useState(false)
   const toggleModalHistory = () => setModalHistory((prev) => !prev)
 
-  const handleInputGameNameChange = (event) => {
-    setRoomName(event.target.value)
-  }
-
-  const handleInputGameNameFocus = () => {
-    inputRef.current.focus()
-    setIsEditing(true)
-  }
-
-  const handleInputGameNameBlur = () => {
-    handleSubmit()
-    setIsEditing(false)
-  }
-
-  const handleSubmit = () => {
-    setRoom((current) => ({
-      ...current,
-      name: roomName,
-    }))
-    socket.emit(SOCKET_EVENT.ROOM.NAME_CHANGE, { name: roomName })
-  }
-
-  useEffect(() => {
-    if (room) {
-      setRoomName(room.name || ROOM_DEFAULT_NAME)
-    }
-  }, [room])
-
-  useEffect(() => {
-    socket.on(SOCKET_EVENT.ROOM.NAME_CHANGE, (data) => {
-      setRoom((current) => ({
-        ...current,
-        name: data.name,
-      }))
-    })
-  }, [])
+  const [modalChangeGameName, setModalChangeGameName] = useState(false)
+  const toggleModalChangeGameName = () =>
+    setModalChangeGameName(!modalChangeGameName)
 
   return (
     <div className="d-flex justify-content-between align-items-center room__header">
@@ -89,40 +49,14 @@ function RoomHeader({ gameName, toggleOffCanvas }) {
               <i className="fas fa-chevron-down" />
             </DropdownToggle>
             <DropdownMenu className="border-0 mt-3 p-0">
-              <DropdownItem
-                className="d-flex justify-content-between align-items-center item-game-name"
-                header
-              >
-                <input
-                  id="input-edit-game-name"
-                  className="input-edit-game-name"
-                  size={roomName.length}
-                  ref={inputRef}
-                  value={roomName}
-                  onChange={handleInputGameNameChange}
-                  onFocus={handleInputGameNameFocus}
-                  onBlur={handleInputGameNameBlur}
-                  maxLength={GAME_NAME_LIMIT}
-                />
-                {isEditing && (
-                  <button
-                    type="button"
-                    className="btn-done"
-                    onClick={handleInputGameNameBlur}
-                  >
-                    <i className="fa fa-check" />
-                  </button>
-                )}
-                {!isEditing && (
-                  <button
-                    type="button"
-                    className="btn-edit"
-                    onClick={handleInputGameNameFocus}
-                  >
-                    <i className="fa-regular fa-pen-to-square" />
-                  </button>
-                )}
+              <DropdownItem className="item" onClick={toggleModalChangeGameName}>
+                <i className="fa-regular fa-pen-to-square" />
+                Change game name
               </DropdownItem>
+              <ChangeGameName
+                modalChangeGameName={modalChangeGameName}
+                toggleModalChangeGameName={toggleModalChangeGameName}
+              />
               <DropdownItem divider className="m-0" />
               <DropdownItem className="item" onClick={toggleModalHistory}>
                 <i className="fa fa-history" />

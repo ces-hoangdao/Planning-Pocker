@@ -4,14 +4,22 @@ import { Form, FormGroup, Input, Label, Button } from "reactstrap"
 import { createRoom } from "../../api/services/roomService"
 import { ROUTES } from "../../constants/routes"
 import logo from "../../assets/logo.png"
+import { GAME_NAME_LIMIT } from "../../constants/authConst"
+import { GAMENAME_LENGTH_EXCEEDS_ERROR } from "../../constants/errorMessage"
 import "./NewGame.css"
 
 function NewGame() {
   const [roomName, setRoomName] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
 
   const handleInputChange = (event) => {
     setRoomName(event.target.value)
+    setErrorMessage(
+      event.target.value.length >= GAME_NAME_LIMIT
+        ? GAMENAME_LENGTH_EXCEEDS_ERROR
+        : ""
+    )
   }
 
   const handleSubmit = async (event) => {
@@ -47,8 +55,14 @@ function NewGame() {
               value={roomName}
               type="text"
               onChange={handleInputChange}
+              maxLength={GAME_NAME_LIMIT}
               autoFocus
             />
+            {errorMessage && (
+              <div className="error-message">
+                <i className="fa fa-warning" /> {errorMessage}
+              </div>
+            )}
           </FormGroup>
           <Button
             block
