@@ -44,7 +44,6 @@ function IssueContextProvider({ children }) {
   }
 
   const onUpdateIssue = (issue) => {
-    setSelectedIssue(issue)
     setIssueList((oldIssueList) =>
       oldIssueList.map((_issue) => {
         if (_issue._id === issue._id) {
