@@ -5,7 +5,6 @@ import RoomHeader from "./components/RoomHeader"
 import RoomBody from "./components/RoomBody"
 import RoomFooter from "./components/RoomFooter"
 import { getRoomById } from "../../api/services/roomService"
-import { getUserById } from "../../api/services/userService"
 import { RoomContext } from "../../context/roomContext"
 import { SocketContext } from "../../context/SocketContext"
 import { ROOM_DEFAULT_NAME, ROOM_STATUS } from "../../constants/roomConst"
@@ -73,12 +72,8 @@ function PlanningRoom() {
   }
 
   const checkUserLoggedIn = async () => {
-    const userId = localStorage.getItem("userId")
-    if (userId) {
-      const res = await getUserById(userId)
-      if (res.success) {
-        setIsLoggedIn(true)
-      }
+    if (user._id) {
+      setIsLoggedIn(true)
     }
   }
 
