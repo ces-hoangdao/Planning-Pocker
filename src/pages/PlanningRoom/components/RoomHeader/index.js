@@ -25,7 +25,7 @@ import "./RoomHeader.css"
 
 function RoomHeader({ gameName, toggleOffCanvas }) {
   const { user } = useContext(UserContext)
-  const { room, setRoom } = useContext(RoomContext)
+  const { room, setRoom, selectedIssue } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
   const [isEditing, setIsEditing] = useState(false)
   const [roomName, setRoomName] = useState("")
@@ -73,62 +73,75 @@ function RoomHeader({ gameName, toggleOffCanvas }) {
 
   return (
     <div className="d-flex justify-content-between align-items-center room__header">
-      <div className="left-side-header">
-        <Link to={ROUTES.HOME_PATH}>
-          <img className="site-logo" src={logo} alt="" />
-        </Link>
-        <UncontrolledDropdown direction="down" className="dropdown-container">
-          <DropdownToggle color="primary" className="btn-dropdown btn-game-dropdown">
-            {gameName}
-            <i className="fas fa-chevron-down" />
-          </DropdownToggle>
-          <DropdownMenu className="border-0 mt-3">
-            <DropdownItem
-              className="d-flex justify-content-between align-items-center item-game-name"
-              header
+      <Nav className="d-flex justify-content-start align-items-center left-side-header">
+        <NavItem>
+          <Link to={ROUTES.HOME_PATH}>
+            <img className="site-logo" src={logo} alt="" />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <UncontrolledDropdown direction="down" className="dropdown-container">
+            <DropdownToggle
+              color="primary"
+              className="btn-dropdown btn-game-dropdown"
             >
-              <input
-                id="input-edit-game-name"
-                className="input-edit-game-name"
-                size={roomName.length}
-                ref={inputRef}
-                value={roomName}
-                onChange={handleInputGameNameChange}
-                onFocus={handleInputGameNameFocus}
-                onBlur={handleInputGameNameBlur}
-                maxLength={GAME_NAME_LIMIT}
+              {gameName}
+              <i className="fas fa-chevron-down" />
+            </DropdownToggle>
+            <DropdownMenu className="border-0 mt-3 p-0">
+              <DropdownItem
+                className="d-flex justify-content-between align-items-center item-game-name"
+                header
+              >
+                <input
+                  id="input-edit-game-name"
+                  className="input-edit-game-name"
+                  size={roomName.length}
+                  ref={inputRef}
+                  value={roomName}
+                  onChange={handleInputGameNameChange}
+                  onFocus={handleInputGameNameFocus}
+                  onBlur={handleInputGameNameBlur}
+                  maxLength={GAME_NAME_LIMIT}
+                />
+                {isEditing && (
+                  <button
+                    type="button"
+                    className="btn-done"
+                    onClick={handleInputGameNameBlur}
+                  >
+                    <i className="fa fa-check" />
+                  </button>
+                )}
+                {!isEditing && (
+                  <button
+                    type="button"
+                    className="btn-edit"
+                    onClick={handleInputGameNameFocus}
+                  >
+                    <i className="fa-regular fa-pen-to-square" />
+                  </button>
+                )}
+              </DropdownItem>
+              <DropdownItem divider className="m-0" />
+              <DropdownItem className="item" onClick={toggleModalHistory}>
+                <i className="fa fa-history" />
+                Voting history
+              </DropdownItem>
+              <VotingHistory
+                modalHistory={modalHistory}
+                toggleModalHistory={toggleModalHistory}
               />
-              {isEditing && (
-                <button
-                  type="button"
-                  className="btn-done"
-                  onClick={handleInputGameNameBlur}
-                >
-                  <i className="fa fa-check" />
-                </button>
-              )}
-              {!isEditing && (
-                <button
-                  type="button"
-                  className="btn-edit"
-                  onClick={handleInputGameNameFocus}
-                >
-                  <i className="fa-regular fa-pen-to-square" />
-                </button>
-              )}
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem className="item" onClick={toggleModalHistory}>
-              <i className="fa fa-history" />
-              Voting history
-            </DropdownItem>
-            <VotingHistory
-              modalHistory={modalHistory}
-              toggleModalHistory={toggleModalHistory}
-            />
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </div>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+          {selectedIssue && (
+            <div className="voting-issue-wrapper">
+              <span className="voting-issue-label">Voting: </span>
+              <span className="voting-issue-name">{selectedIssue.name}</span>
+            </div>
+          )}
+        </NavItem>
+      </Nav>
       <Nav className="d-flex justify-content-end align-items-center right-side-header">
         <NavItem>
           <UncontrolledDropdown direction="down" className="dropdown-container">

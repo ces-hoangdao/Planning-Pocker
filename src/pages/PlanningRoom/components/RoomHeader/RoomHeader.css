@@ -1,5 +1,6 @@
 .room__header {
   z-index: calc(1 + var(--firework-z-index));
+  height: 9rem;
 }
 
 .site-logo {
@@ -10,6 +11,19 @@
 .dropdown.dropdown-container {
   display: inline-block;
   margin-left: 0.8rem;
+}
+
+.voting-issue-wrapper {
+  font-size: var(--font-size-small);
+  margin-left: 1.75rem;
+}
+
+.voting-issue-label {
+  color: var(--label-color);
+}
+
+.voting-issue-name {
+  color: var(--text-color);
 }
 
 .dropdown.dropdown-container:hover {

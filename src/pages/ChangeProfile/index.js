@@ -89,16 +89,16 @@ function ChangeProfile() {
 
   return (
     <div className="change-profile">
-      <DropdownMenu className="border-0 mt-3">
+      <DropdownMenu className="border-0 mt-3 p-0">
         <DropdownItem className="item" onClick={toggleModalProfile}>
           <i className="fa fa-user" />
           Change profile
         </DropdownItem>
-        <DropdownItem divider />
+        <DropdownItem divider className="m-0" />
         {roomContext && (
           <>
             <SpecMode />
-            <DropdownItem divider />
+            <DropdownItem divider className="m-0" />
           </>
         )}
         <DropdownItem className="item" onClick={handleSignOut}>
@@ -131,19 +131,22 @@ function ChangeProfile() {
                 />
               </div>
             </FormGroup>
-            <FormGroup>
-              <Label for="input-display-name" hidden>
-                Your display name
-              </Label>
-              <Input
-                id="input-display-name"
-                name="input-display-name"
-                value={displayName}
-                type="text"
-                maxLength={USER_NAME_LIMIT}
-                className="input-display-name"
-                onChange={handleInputChange}
-              />
+            <FormGroup className="mt-5">
+              <div className="form-floating">
+                <input
+                  type="text"
+                  id="input-display-name"
+                  name="input-display-name"
+                  className="form-control input-display-name"
+                  value={displayName}
+                  maxLength={USER_NAME_LIMIT}
+                  onChange={handleInputChange}
+                  placeholder="Your display name"
+                />
+                <label htmlFor="input-display-name" className="label-display-name">
+                  Your display name
+                </label>
+              </div>
               {errorMessage && (
                 <div className="error-message">
                   <i className="fa fa-warning" /> {errorMessage}

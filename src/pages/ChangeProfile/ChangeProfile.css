@@ -36,8 +36,15 @@
   color: var(--secondary-color);
 }
 
-.input-display-name {
-  font-size: var(--font-size-large);
+.form-floating .form-control.input-display-name {
+  height: 5.5rem;
+  font-size: var(--font-size-medium);
+  padding-top: 2rem;
+}
+
+.form-floating .label-display-name {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-small);
 }
 
 .btn.btn-save {
