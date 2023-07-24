@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Offcanvas, OffcanvasBody, Button, OffcanvasHeader } from "reactstrap"
+import { Offcanvas, OffcanvasBody, Button } from "reactstrap"
 import IssueInput from "./components/IssueInput"
 import IssueList from "./components/IssueList"
 import { IssueContext } from "../../../../context/issueContext"
@@ -49,12 +49,19 @@ function Issues({ isOpen, toggleOffCanvas, voteResult }) {
       toggle={toggleOffCanvas}
       className="canvas-issue border-0"
     >
-      <OffcanvasHeader toggle={toggleOffCanvas}>
-        <div className="d-flex flex-column gap-2">
+      <div className="d-flex align-items-center p-3 justify-content-between issue-header">
+        <div className="d-flex flex-column gap-2 justify-content-center align-items-start offcanvas-title">
           <span className="fs-3">Issues</span>
           <p className="issues-report m-0">{`${issueCount} issues・${totalPoint} points`}</p>
         </div>
-      </OffcanvasHeader>
+        <button
+          className="border-0 d-flex justify-content-center align-items-center off-canvas-close-btn"
+          type="button"
+          onClick={toggleOffCanvas}
+        >
+          <i className="fa-solid fa-xmark"></i>
+        </button>
+      </div>
       <OffcanvasBody>
         <IssueList
           issueList={issueList}
