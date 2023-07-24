@@ -7,7 +7,7 @@ export const SocketContext = createContext(null)
 function SocketContextProvider({ children }) {
   const [socket] = useState(
     SocketClient(BASE_URL, {
-      autoConnect: false,
+      autoConnect: true,
     })
   )
 

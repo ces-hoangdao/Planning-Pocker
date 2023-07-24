@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import Fireworks from "@fireworks-js/react"
 import RoomHeader from "./components/RoomHeader"
 import RoomBody from "./components/RoomBody"
@@ -9,6 +9,7 @@ import { RoomContext } from "../../context/roomContext"
 import { SocketContext } from "../../context/SocketContext"
 import { ROOM_DEFAULT_NAME, ROOM_STATUS } from "../../constants/roomConst"
 import { UserContext } from "../../context/userContext"
+import { ROUTES } from "../../constants/routes"
 import SOCKET_EVENT from "../../constants/socket_event"
 import IssueContextProvider from "../../context/issueContext"
 import Issues from "./components/Issues"
@@ -33,6 +34,8 @@ function PlanningRoom() {
   const fireworkRef = useRef()
   const { id } = useParams()
 
+  const navigate = useNavigate()
+
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen)
   }
@@ -46,6 +49,11 @@ function PlanningRoom() {
       setRoom((current) => ({ ...current, status: ROOM_STATUS.VOTING }))
       if (resetIssue) setSelectedIssue(null)
     })
+
+    return () => {
+      socket.emit(SOCKET_EVENT.USER.LEAVE)
+      socket.off(SOCKET_EVENT.ALL)
+    }
   }, [])
 
   useEffect(() => {
@@ -64,11 +72,15 @@ function PlanningRoom() {
   }, [room])
 
   const getGameName = async () => {
-    const res = await getRoomById(id)
-    const { voting, currentResults, ...roomData } = res.data
-    setRoom(roomData)
-    setUsers(voting)
-    setVoteResult(currentResults)
+    try {
+      const res = await getRoomById(id)
+      const { voting, currentResults, ...roomData } = res.data
+      setRoom(roomData)
+      setUsers(voting)
+      setVoteResult(currentResults)
+    } catch {
+      navigate(ROUTES.HOME_PATH)
+    }
   }
 
   const checkUserLoggedIn = async () => {
