@@ -10,8 +10,12 @@ function UserContextProvider({ children }) {
     const getUser = async () => {
       const userId = localStorage.getItem("userId")
       if (userId) {
-        const res = await getUserById(userId)
-        setUser(res.data)
+        try {
+          const res = await getUserById(userId)
+          setUser(res.data)
+        } catch {
+          localStorage.removeItem("userId")
+        }
       }
     }
     getUser()
