@@ -72,45 +72,6 @@
   box-shadow: 1px 2px 6px 0px var(--dropdown-menu-box-shadow-color);
 }
 
-.dropdown-header.item-game-name {
-  padding: 0.7rem 1.4rem;
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-color);
-  gap: 1rem;
-}
-
-.dropdown-header.item-game-name .btn-edit {
-  color: var(--dropdown-icon-color);
-}
-
-.dropdown-header.item-game-name .btn-edit:hover {
-  color: var(--text-color);
-}
-
-.dropdown-header.item-game-name .btn-done {
-  color: var(--secondary-color);
-}
-
-.btn-edit,
-.btn-done {
-  background-color: transparent;
-  color: var(--text-color);
-  border: 0;
-}
-
-.input-edit-game-name {
-  height: 3rem;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  font-weight: var(--font-weight-medium);
-}
-
-.input-edit-game-name:focus {
-  border-bottom: 1.5px solid var(--secondary-color);
-}
-
 .right-side-header {
   gap: 3rem;
 }
