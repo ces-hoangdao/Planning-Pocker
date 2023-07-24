@@ -95,8 +95,8 @@ function RoomBody({ isRevealed }) {
         <SetTimer />
       </div>
       <div className="table-module-wrapper d-flex align-items-center justify-content-center">
-        <div className="table-module-container d-inline-grid">
-          <div className="table-module-top d-flex align-items-center justify-content-center gap-4">
+        <div className="table-module-container d-inline-grid align-items-center gap-4">
+          <div className="table-module-top d-flex align-items-center justify-content-center">
             {topUserList.map((_user) => (
               <PlayerCard
                 userVoting={_user}

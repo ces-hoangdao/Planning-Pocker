@@ -1,5 +1,4 @@
 .table-module-container {
-  grid-gap: 0.8rem;
   grid-template-areas:
     "left top right"
     "left center right"
@@ -17,17 +16,15 @@
 
 .table-module-left {
   grid-area: left;
-  width: 7.5rem;
 }
 
 .table-module-right {
   grid-area: right;
-  width: 7.5rem;
 }
 
 .table-module-bottom {
   grid-area: bottom;
-  height: 13rem;
+  height: 14.2rem;
 }
 
 .table-module-center {
@@ -122,7 +119,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 7rem;
+  width: 7rem;
 }
 
 .btn-timer {
