@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ToastContainer, Zoom } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import NewGame from "./pages/NewGame"
+import NotFound from "./pages/NotFound"
 import { ROUTES } from "./constants/routes"
 import "./index.css"
 import Home from "./pages/Home"
@@ -37,6 +38,7 @@ function App() {
               </RoomContextProvider>
             }
           />
+          <Route path={ROUTES.OTHERS} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

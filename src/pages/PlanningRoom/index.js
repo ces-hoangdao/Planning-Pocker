@@ -79,7 +79,7 @@ function PlanningRoom() {
       setUsers(voting)
       setVoteResult(currentResults)
     } catch {
-      navigate(ROUTES.HOME_PATH)
+      navigate(ROUTES.NOT_FOUND)
     }
   }
 
