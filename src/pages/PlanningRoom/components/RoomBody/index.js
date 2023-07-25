@@ -84,6 +84,7 @@ function RoomBody({ isRevealed }) {
 
   const handleStart = () => {
     socket.emit(SOCKET_EVENT.ROOM.START, true)
+    setRevealable(false)
   }
 
   return (
