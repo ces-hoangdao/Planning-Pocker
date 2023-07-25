@@ -32,13 +32,15 @@ function RoomBody({ isRevealed }) {
   }
 
   useEffect(() => {
-    for (let i = 0; i < users.length; i += 1) {
-      if (users[i].vote) {
-        setRevealable(true)
-        return
+    if (!isRevealed) {
+      for (let i = 0; i < users.length; i += 1) {
+        if (users[i].vote) {
+          setRevealable(true)
+          return
+        }
       }
+      setRevealable(false)
     }
-    setRevealable(false)
   }, [users])
 
   useEffect(() => {
@@ -82,6 +84,7 @@ function RoomBody({ isRevealed }) {
 
   const handleStart = () => {
     socket.emit(SOCKET_EVENT.ROOM.START, true)
+    setRevealable(false)
   }
 
   return (
