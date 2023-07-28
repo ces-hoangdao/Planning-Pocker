@@ -39,8 +39,8 @@ function RoomBody({ isRevealed }) {
           return
         }
       }
-      setRevealable(false)
     }
+    setRevealable(false)
   }, [users])
 
   useEffect(() => {
@@ -134,7 +134,7 @@ function RoomBody({ isRevealed }) {
           </div>
           <div
             className={`table-module-center ${
-              isRevealable ? "voting" : ""
+              isRevealable && !isRevealed ? "voting" : ""
             } d-flex flex-column align-items-center justify-content-center`}
           >
             {isRevealed ? (
