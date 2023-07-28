@@ -28,8 +28,9 @@ function RoomHeader({ gameName, toggleOffCanvas }) {
   const toggleModalHistory = () => setModalHistory((prev) => !prev)
 
   const [modalChangeGameName, setModalChangeGameName] = useState(false)
-  const toggleModalChangeGameName = () =>
+  const toggleModalChangeGameName = () => {
     setModalChangeGameName(!modalChangeGameName)
+  }
 
   return (
     <div className="d-flex justify-content-between align-items-center room__header">
@@ -69,9 +70,9 @@ function RoomHeader({ gameName, toggleOffCanvas }) {
             </DropdownMenu>
           </UncontrolledDropdown>
           {selectedIssue && (
-            <div className="voting-issue-wrapper">
+            <div className="voting-issue-wrapper d-flex align-items-center gap-2">
               <span className="voting-issue-label">Voting: </span>
-              <span className="voting-issue-name">{selectedIssue.name}</span>
+              <p className="voting-issue-name m-0">{selectedIssue.name}</p>
             </div>
           )}
         </NavItem>

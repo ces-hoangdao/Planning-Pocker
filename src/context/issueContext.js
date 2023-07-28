@@ -13,7 +13,7 @@ import { ROOM_STATUS } from "../constants/roomConst"
 export const IssueContext = createContext(null)
 
 function IssueContextProvider({ children }) {
-  const { room, setSelectedIssue } = useContext(RoomContext)
+  const { room, selectedIssue, setSelectedIssue } = useContext(RoomContext)
   const { socket } = useContext(SocketContext)
 
   const [issueList, setIssueList] = useState([])
@@ -48,8 +48,8 @@ function IssueContextProvider({ children }) {
       oldIssueList.map((_issue) => {
         if (_issue._id === issue._id) {
           _issue = { ...issue }
+          if (selectedIssue._id === issue._id) setSelectedIssue(issue)
         }
-
         return _issue
       })
     )

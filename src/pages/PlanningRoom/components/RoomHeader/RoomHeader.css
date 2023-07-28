@@ -23,7 +23,12 @@
 }
 
 .voting-issue-name {
+  display: inline-block;
   color: var(--text-color);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 7rem;
 }
 
 .dropdown.dropdown-container:hover {
