@@ -30,7 +30,6 @@
 .table-module-center {
   grid-area: center;
   height: 18rem;
-  width: 40rem;
   background-color: var(--table-background);
   border: 0 solid var(--secondary-color);
   border-radius: 5rem;
@@ -40,7 +39,6 @@
 .table-module-center.voting {
   grid-area: center;
   height: 18rem;
-  width: 40rem;
   background-color: var(--table-background);
   border: 0 solid var(--secondary-color);
   border-radius: 5rem;
